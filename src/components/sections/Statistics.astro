@@ -1,0 +1,52 @@
+---
+import Section from "../Section.astro";
+import Cta from "../ui/Cta.astro";
+
+// Statistics content interface
+export interface StatisticsContent {
+  headline?: string;
+  subline?: string;
+  items?: {
+    value: string;
+    label: string;
+  }[];
+  cta?: string;
+}
+
+// Props interface for Statistics component
+export interface Props {
+  content: StatisticsContent;
+}
+
+// Destructure content prop
+const { content } = Astro.props;
+---
+
+<Section as="section" class="bg-slate-100" id="statistics" containerClass="py-16">
+  <div class="grid items-center gap-x-32 gap-y-12 lg:grid-cols-2">
+    <div class="space-y-6 text-center lg:text-left">
+      <h2 slot="heading" class="text-3xl font-semibold text-gray-800 sm:text-5xl">
+        {content.headline}
+      </h2>
+      <p class="mx-auto max-w-2xl text-lg text-gray-500">
+        {content.subline}
+      </p>
+      <!-- Lien vers une autre page -->
+      <Cta href="#contact" variant="primary" size="lg" class="hidden">{content.cta}</Cta>
+    </div>
+    <div class="">
+      <div class="grid gap-3 sm:grid-cols-2 sm:gap-6">
+        {
+          content.items?.map((item, index) => (
+            <div
+              class={`flex flex-col items-center justify-center space-y-4 rounded-xl border border-slate-200 bg-white p-8 text-center ${index >= 3 ? "hidden sm:flex" : ""}`}
+            >
+              <span class="text-3xl font-bold text-gray-800 md:text-5xl">{item.value}</span>
+              <span class="text-lg text-gray-500">{item.label}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</Section>

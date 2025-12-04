@@ -1,0 +1,111 @@
+---
+import "../styles/global.css";
+import { getAbsoluteLocaleUrl } from "astro:i18n";
+import { ClientRouter } from "astro:transitions";
+
+// Props interface for BaseLayout
+export interface Props {
+  title: string;
+  description?: string;
+  robots?: string;
+  themeColor?: string;
+}
+
+// Destructure props for BaseLayout
+const { title, description, robots = "index,follow", themeColor } = Astro.props;
+
+// Get current locale from Astro.currentLocale with fallback
+const currentLocale = (Astro.currentLocale || "fr") as "fr" | "en" | "de";
+
+// Extract normalized path from the current URL (everything after the locale)
+const segments = Astro.url.pathname.split("/").filter(Boolean);
+const normalizedPagePath = segments.slice(1).join("/");
+
+// Must stay in sync with your i18n config
+const locales = ["fr", "en", "de"] as const;
+
+// Canonical URL for the current locale + path
+const canonicalUrl = getAbsoluteLocaleUrl(currentLocale, normalizedPagePath || "");
+
+// Alternate URLs for all supported locales
+const alternates = locales.map((locale) => ({
+  locale,
+  href: getAbsoluteLocaleUrl(locale, normalizedPagePath || ""),
+}));
+
+// Map locales to hreflang codes (must match sitemap configuration)
+const hreflangMap: Record<(typeof locales)[number], string> = {
+  fr: "fr-FR",
+  en: "en-US",
+  de: "de-DE",
+};
+---
+
+<!doctype html>
+<html lang={currentLocale}>
+  <head>
+    <ClientRouter />
+
+    <!-- Technical meta -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content={robots} />
+    <!-- Hint user agents that both light and dark themes are supported -->
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- Basic SEO -->
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+
+    {themeColor && <meta name="theme-color" content={themeColor} />}
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- hreflang alternates for each locale -->
+    {
+      alternates.map(({ locale, href }) => (
+        <link rel="alternate" hreflang={hreflangMap[locale]} href={href} />
+      ))
+    }
+
+    <!-- x-default: default language version (here: French) -->
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={getAbsoluteLocaleUrl("fr", normalizedPagePath || "")}
+    />
+
+    <!-- Favicons & PWA manifest -->
+    <link rel="icon" href="/assets/favicon/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png" />
+
+    <!-- Sitemap for search engines -->
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- Slot for page-specific SEO (Open Graph, Twitter, JSON-LD, etc.) -->
+    <slot name="head" />
+  </head>
+
+  <body
+    class="bg-teal-1000 relative min-h-dvh bg-linear-to-bl from-teal-950 via-transparent text-gray-300 antialiased"
+  >
+    <slot />
+  </body><!-- Preline UI JavaScript imported with correct Astro workaround (see docs) -->
+  <script>
+    import "preline/dist/preline.js";
+  </script>
+
+  <!-- Reinitialize Preline after page transitions -->
+  <script>
+    document.addEventListener("astro:page-load", () => {
+      // @ts-expect-error - HSStaticMethods is added by Preline at runtime
+      if (typeof window.HSStaticMethods !== "undefined") {
+        // @ts-expect-error - HSStaticMethods is added by Preline at runtime
+        window.HSStaticMethods.autoInit();
+      }
+    });
+  </script>
+</html>

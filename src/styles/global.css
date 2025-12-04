@@ -1,0 +1,105 @@
+/* ===== IMPORTS ===== */
+
+/* Import Tailwind CSS v4.1 */
+@import "tailwindcss";
+/* Import Preline UI variants for interactive components */
+@import "preline/variants.css";
+/* Preline interactive scripts */
+@source "../../node_modules/preline/dist/*.js";
+/* Tailwind CSS Forms plugin */
+@plugin "@tailwindcss/forms";
+
+/* ===== FONTS ===== */
+
+/* ===== THEME STYLES ===== */
+/* Tokens to customize for automatic Tailwind utility configuration */
+@theme {
+  --color-teal-1000: hsl(196.62deg 100% 3%);
+}
+
+/* ===== BASE STYLES ===== */
+@layer base {
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Adds a 'pointer' cursor by default to buttons */
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  /* Reduces animations for users who have enabled a reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ===== COMPONENT STYLES ===== */
+@layer components {
+  /* Base CTA */
+  .cta {
+    @apply inline-flex items-center justify-center rounded-lg font-medium tracking-tight transition-colors duration-150 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 focus-visible:outline-none;
+  }
+
+  /* Sizes */
+  .cta--sm {
+    @apply gap-1.5 px-3 py-2 text-sm;
+  }
+
+  .cta--md {
+    @apply gap-2 px-4 py-2.5 text-sm md:text-base;
+  }
+
+  .cta--lg {
+    @apply gap-2.5 px-5 py-3 text-base md:text-lg;
+  }
+
+  /* Variants */
+  .cta--primary {
+    @apply bg-teal-700 text-white hover:bg-teal-600 focus-visible:ring-teal-600;
+  }
+
+  .cta--secondary {
+    @apply bg-slate-900 text-slate-50 hover:bg-slate-800 focus-visible:ring-slate-900;
+  }
+
+  .cta--tertiary {
+    @apply border border-slate-300 text-slate-900 hover:bg-slate-100 focus-visible:ring-slate-400;
+  }
+
+  .cta--ghost {
+    @apply bg-transparent text-slate-900 hover:bg-slate-100 focus-visible:ring-slate-400;
+  }
+
+  .cta--link {
+    @apply bg-transparent text-indigo-600 underline-offset-4 hover:underline focus-visible:ring-indigo-500;
+  }
+
+  /* Disabled state for links (<a aria-disabled="true">) */
+  .cta[aria-disabled="true"] {
+    @apply pointer-events-none cursor-not-allowed opacity-60;
+  }
+
+  /* Loading state via data-attribute */
+  .cta[data-loading="true"] {
+    @apply cursor-progress opacity-80;
+  }
+
+  /* Optional: full width helper, si tu veux sortir w-full du composant TS */
+  .cta--full {
+    @apply w-full;
+  }
+}
+
+/* ===== UTILITY STYLES ===== */
+@layer utilities {
+}

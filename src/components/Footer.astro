@@ -1,0 +1,181 @@
+---
+import Section from "./Section.astro";
+import Image from "astro/components/Image.astro";
+import LogoAltFull from "../assets/branding/bizibox-logo-leaf-full.png";
+import Cta from "./ui/Cta.astro";
+
+// Footer content interface
+export interface FooterContent {
+  footerLabel: string;
+  brandCopy: string;
+  tagList?: string[];
+  navLabel: string;
+  navList?: {
+    href: string;
+    label: string;
+  }[];
+  contactLabel: string;
+  contactList?: {
+    addressLine1: string;
+    addressLine2: string;
+    email: string;
+  };
+  footerBottomLabel: string;
+  copyrightLabel: string;
+  legalLabel: string;
+  legalList?: {
+    href: string;
+    ariaLabel: string;
+    legalLabel: string;
+  }[];
+  socialLabel: string;
+  socialList?: {
+    href: string;
+    ariaLabel: string;
+    icon: string;
+  }[];
+}
+
+// Props interface for Footer component
+export interface Props {
+  content: FooterContent;
+}
+
+// Destructure content prop
+const { content } = Astro.props;
+
+// Internationalization
+const i18n = {
+  fr: {
+    logoAlt: "Logo de Bizibox",
+  },
+  en: {
+    logoAlt: "Bizibox Logo",
+  },
+  de: {
+    logoAlt: "Bizibox-Logo",
+  },
+};
+
+// Get current locale from Astro.currentLocale with fallback
+const locale = Astro.currentLocale || "fr";
+
+// Get translations for the current locale with fallback to French
+const t = i18n[locale as keyof typeof i18n] || i18n.fr;
+
+/**
+ * Footer - Global site footer for the Bizibox landing page
+ *
+ * This component is designed to:
+ * - Look solid and modern on a single landing page
+ * - Provide brand context, quick navigation, legal and contact info
+ * - Be fully responsive and accessible
+ */
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-transparent" role="contentinfo">
+  <Section as="section" class="bg-transparent" id="footer" containerClass="py-12 sm:py-16">
+    <div class="flex flex-col gap-x-16 gap-y-8 md:flex-row md:justify-between">
+      <div class="flex flex-col items-start space-y-6 md:max-w-sm">
+        <h2 slot="heading" class="sr-only">{content.footerLabel}</h2>
+        <Image src={LogoAltFull} alt={t.logoAlt} class="h-12 w-auto object-contain select-none" />
+        <p class="text-gray-300">
+          {content.brandCopy}
+        </p>
+        <div class="flex flex-wrap items-center gap-4">
+          {
+            content.tagList?.map((tag) => (
+              <span class="rounded-full bg-teal-800/30 px-3 py-1 text-sm font-medium text-nowrap text-teal-300">
+                {tag}
+              </span>
+            ))
+          }
+        </div>
+      </div>
+      <nav aria-labelledby="footer-navigation" class="flex flex-col space-y-2">
+        <h3 id="footer-navigation" class="mb-3 text-xl font-semibold">{content.navLabel}</h3>
+        <ul class="space-y-2">
+          {
+            content.navList?.map((item) => (
+              <li>
+                <a href={item.href} class="text-gray-400 hover:text-white hover:underline">
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <div class="">
+        <h3 class="mb-3 text-xl font-semibold">{content.contactLabel}</h3>
+        {
+          content.contactList && (
+            <address class="space-y-2 text-gray-400 not-italic">
+              <p>{content.contactList.addressLine1}</p>
+              <p>{content.contactList.addressLine2}</p>
+              <a
+                href={`mailto:${content.contactList.email}`}
+                class="text-gray-400 hover:text-white hover:underline"
+              >
+                {content.contactList.email}
+              </a>
+            </address>
+          )
+        }
+      </div>
+    </div>
+  </Section>
+
+  <Section
+    as="section"
+    class="border-t border-teal-950 bg-transparent"
+    id="footer-bottom"
+    containerClass="py-6 sm:py-4"
+  >
+    <h2 class="sr-only">{content.footerBottomLabel}</h2>
+    <div class="flex flex-wrap items-center justify-between gap-x-8 gap-y-6">
+      <p class="text-sm text-gray-400">© {currentYear} {content.copyrightLabel}</p>
+      <nav aria-labelledby="legal-navigation">
+        <h3 id="legal-navigation" class="sr-only">{content.legalLabel}</h3>
+        <ul class="flex flex-row gap-6 text-sm">
+          {
+            content.legalList?.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="text-gray-400 hover:text-white hover:underline"
+                  aria-label={item.ariaLabel}
+                >
+                  {item.legalLabel}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <nav aria-labelledby="social-navigation">
+        <h3 id="social-navigation" class="sr-only">{content.socialLabel}</h3>
+        <ul class="flex flex-row gap-0">
+          {
+            content.socialList?.map((item) => (
+              <li>
+                <Cta
+                  variant="link"
+                  size="sm"
+                  href={item.href}
+                  target="_blank"
+                  ariaLabel={item.ariaLabel}
+                  announceNewTab
+                  class="text-gray-400 hover:text-white"
+                  set:html={item.icon}
+                />
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+  </Section>
+</footer>

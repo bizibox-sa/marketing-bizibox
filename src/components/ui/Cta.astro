@@ -1,0 +1,214 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+/**
+ * CTA variants (visual style)
+ */
+type Variant = "primary" | "secondary" | "tertiary" | "ghost" | "link";
+
+/**
+ * CTA sizes
+ */
+type Size = "sm" | "md" | "lg";
+
+/**
+ * Base props specific to this CTA component.
+ */
+interface CtaOwnProps {
+  /**
+   * Visual style variant.
+   */
+  variant?: Variant;
+
+  /**
+   * Size variant.
+   */
+  size?: Size;
+
+  /**
+   * Make the CTA full width.
+   */
+  fullWidth?: boolean;
+
+  /**
+   * Show loading state (visual) and aria-busy.
+   * NOTE: does NOT automatically disable the CTA.
+   */
+  loading?: boolean;
+
+  /**
+   * Force underlying tag. By default:
+   * - <a> if `href` is provided
+   * - <button> otherwise
+   */
+  as?: "button" | "a";
+
+  /**
+   * Accessible name if the CTA content is not descriptive
+   * (e.g. icon-only buttons).
+   */
+  ariaLabel?: string;
+
+  /**
+   * Announce that the link opens in a new tab for screen readers.
+   * Only used when rendering an <a> with target="_blank".
+   */
+  announceNewTab?: boolean;
+}
+
+/**
+ * Native HTML attributes accepted by both <button> and <a>.
+ */
+type NativeAttributes = HTMLAttributes<"button"> & HTMLAttributes<"a">;
+
+/**
+ * Final component props type.
+ */
+interface Props extends CtaOwnProps, NativeAttributes {
+  /**
+   * `class` comes from Astro attributes and must be added explicitly.
+   */
+  class?: string;
+}
+
+const {
+  variant = "primary",
+  size = "md",
+  fullWidth = false,
+  loading = false,
+  as,
+  ariaLabel,
+  announceNewTab = false,
+  href,
+  type = "button",
+  target,
+  rel,
+  disabled,
+  class: userClass,
+  // Collect remaining attributes (id, data-*, aria-*, etc.)
+  ...attrs
+} = Astro.props as Props;
+
+/**
+ * Decide whether to render a <button> or an <a>.
+ * - Explicit `as` takes precedence.
+ * - Otherwise, presence of `href` implies a link.
+ */
+const isLink = as === "a" || (!!href && as !== "button");
+const Tag = isLink ? "a" : "button";
+
+/**
+ * Normalize target/rel for security:
+ * when opening in a new tab, ensure `rel` includes noreferrer/noopener
+ * if the user did not provide a custom `rel`.
+ */
+const finalTarget = isLink ? target : undefined;
+const finalRel = isLink && finalTarget === "_blank" ? (rel ?? "noreferrer noopener") : rel;
+
+/**
+ * Build size classes.
+ */
+const sizeClasses: Record<Size, string> = {
+  sm: "cta--sm",
+  md: "cta--md",
+  lg: "cta--lg",
+};
+
+/**
+ * Base styles shared by all variants.
+ * - inline-flex for consistent alignment
+ * - rounded corners
+ * - focus-visible ring for keyboard users
+ */
+const baseClasses = "cta";
+
+/**
+ * Visual variant classes.
+ * You will probably want to adapt colors to your own design tokens.
+ */
+const variantClasses: Record<Variant, string> = {
+  primary: "cta--primary",
+  secondary: "cta--secondary",
+  tertiary: "cta--tertiary",
+  ghost: "cta--ghost",
+  link: "cta--link",
+};
+
+const widthClasses = fullWidth ? "cta--full" : "";
+const loadingClasses = ""; // géré par data-loading + CSS
+
+/**
+ * Disabled / non-interactive state:
+ * - For <button>, rely on the native `disabled` attribute.
+ * - For <a>, use aria-disabled + remove from tab order.
+ *
+ * NOTE: `loading` does NOT auto-disable. Only the `disabled` prop controls this.
+ * This lets the parent decide if a loading CTA should still be clickable.
+ */
+const isDisabled = !!disabled;
+
+/**
+ * Final className string.
+ */
+const className = [
+  baseClasses,
+  sizeClasses[size],
+  variantClasses[variant],
+  widthClasses,
+  loadingClasses,
+  userClass,
+]
+  .filter(Boolean)
+  .join(" ");
+
+/**
+ * Build accessible text when opening in a new tab.
+ * - If `announceNewTab` is true and `target="_blank"`, we add a suffix.
+ * - This is handled via a visually hidden text inside the CTA,
+ *   not by mutating aria-label, to keep better control over localization.
+ */
+const shouldAnnounceNewTab = isLink && finalTarget === "_blank" && announceNewTab;
+
+/**
+ * Screen reader text for new tab announcement.
+ * TODO: Internationalize this when i18n support is added.
+ */
+const newTabText = "(opens in a new tab)";
+---
+
+<!--
+  Accessible CTA component:
+  - Renders as <button> or <a> depending on props
+  - Uses slots for label and optional left/right icons
+  - Handles disabled / loading state and focus-visible styles
+-->
+<Tag
+  class={className}
+  href={isLink ? href : undefined}
+  type={!isLink ? type : undefined}
+  aria-label={ariaLabel}
+  aria-disabled={isDisabled && isLink ? "true" : undefined}
+  aria-busy={loading ? "true" : undefined}
+  data-variant={variant}
+  data-size={size}
+  data-loading={loading ? "true" : undefined}
+  tabindex={isLink && isDisabled ? -1 : undefined}
+  target={finalTarget}
+  rel={finalRel}
+  disabled={!isLink && isDisabled ? true : undefined}
+  {...attrs}
+>
+  <span class="inline-flex items-center justify-center gap-1.5">
+    <!-- Optional left icon -->
+    <slot name="icon-left" />
+
+    <!-- Main label (default slot) -->
+    <span>
+      <slot />
+      {shouldAnnounceNewTab && <span class="sr-only"> {newTabText}</span>}
+    </span>
+
+    <!-- Optional right icon -->
+    <slot name="icon-right" />
+  </span>
+</Tag>

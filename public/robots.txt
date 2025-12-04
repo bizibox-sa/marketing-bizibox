@@ -1,0 +1,8 @@
+# Robots.txt for Bizibox Landing Page
+# Allow all search engines to crawl the site
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://marketing.bizibox.eu/sitemap-index.xml

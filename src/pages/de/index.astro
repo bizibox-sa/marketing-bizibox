@@ -1,0 +1,84 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Seo from "../../components/Seo.astro";
+import SkipLink from "../../components/ui/SkipLink.astro";
+import Header from "../../components/Header.astro";
+import Hero from "../../components/sections/Hero.astro";
+import Certifications from "../../components/sections/Certifications.astro";
+import Statistics from "../../components/sections/Statistics.astro";
+import Services from "../../components/sections/Services.astro";
+import About from "../../components/sections/About.astro";
+import Testimonials from "../../components/sections/Testimonials.astro";
+import Contact from "../../components/sections/Contact.astro";
+import Faq from "../../components/sections/Faq.astro";
+import Footer from "../../components/Footer.astro";
+
+// Import German home page content
+import { homePageDe } from "../../content/home.de";
+
+// Destructure content for the German home page
+const { meta, hero, statistics, services, about, testimonials, contact, faq, footer } = homePageDe;
+
+// JSON-LD schema for the organization (to be refined later)
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Bizibox",
+  url: Astro.site,
+  logo: `${Astro.site}/assets/logo-bizibox.png`,
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "LU",
+  },
+};
+---
+
+<BaseLayout title={meta.title} description={meta.description} themeColor="#000b0f">
+  <!-- On-page SEO meta tags -->
+  <!-- TODO: update the OG image for German -->
+  <Seo
+    slot="head"
+    title={meta.title}
+    description={meta.description}
+    image="/assets/og/bizibox-landing-de.png"
+    type="website"
+    siteName="Bizibox"
+    twitterSite="@bizibox"
+    schema={organizationSchema}
+  />
+
+  <!-- Skip link to main content (accessibility) -->
+  <SkipLink />
+
+  <!-- Header with language switcher -->
+  <Header />
+
+  <main id="main-content">
+    <!-- Hero section with Netlify form -->
+    <Hero content={hero} />
+
+    <!-- Certifications section -->
+    <Certifications />
+
+    <!-- Services section grid -->
+    <Services content={services} />
+
+    <!-- About section -->
+    <About content={about} />
+
+    <!-- Statistics section -->
+    <Statistics content={statistics} />
+
+    <!-- Testimonials section with carousel -->
+    <Testimonials content={testimonials} />
+
+    <!-- Contact section with CTA -->
+    <Contact content={contact} />
+
+    <!-- FAQ section -->
+    <Faq content={faq} />
+  </main>
+
+  <!-- Footer with additional links and information -->
+  <Footer content={footer} />
+</BaseLayout>

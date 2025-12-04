@@ -1,0 +1,326 @@
+---
+// Hero form content interface
+export interface HeroFormContent {
+  headline: string;
+  intro: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  companySize: string;
+  companySizeOptions: string[];
+  companyActivity: string;
+  companyActivityHelp: string;
+  companyActivityOptions: string[];
+  securityLevel: string;
+  securityLevelHelp: string;
+  securityLevelOptions: string[];
+  consentText: string;
+  submitLabel: string;
+}
+
+// Props interface for Hero form component
+export interface Props {
+  content: HeroFormContent;
+}
+
+// Destructure content prop
+const { content } = Astro.props;
+
+// Internationalization for honeypot
+const i18n = {
+  fr: {
+    honeypotLabel: "Ne remplissez pas ce champ si vous êtes humain",
+  },
+  en: {
+    honeypotLabel: "Don't fill this out if you're human",
+  },
+  de: {
+    honeypotLabel: "Füllen Sie dieses Feld nicht aus, wenn Sie ein Mensch sind",
+  },
+};
+
+const locale = Astro.currentLocale || "fr";
+const t = i18n[locale as keyof typeof i18n] || i18n.fr;
+
+// Generate unique IDs for accessibility
+const formId = "contact-form";
+const firstNameId = `${formId}-first-name`;
+const lastNameId = `${formId}-last-name`;
+const emailId = `${formId}-email`;
+const phoneId = `${formId}-phone`;
+const companySizeId = `${formId}-company-size`;
+const companyActivityId = `${formId}-company-activity`;
+const securityLevelId = `${formId}-security-level`;
+const consentId = `${formId}-consent`;
+---
+
+<form
+  name="contact"
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  action={`/${locale}/success`}
+  class="mx-auto max-w-2xl"
+>
+  <!-- Hidden input for Netlify form name -->
+  <input type="hidden" name="form-name" value="contact" />
+
+  <div class="ms-auto lg:mx-auto lg:me-0 lg:max-w-lg">
+    <!-- Card -->
+    <div
+      class="bg-opacity-50 flex flex-col rounded-2xl bg-white/5 bg-clip-padding px-4 py-6 shadow-lg backdrop-blur-sm backdrop-filter sm:p-7"
+    >
+      <!-- Header -->
+      <div class="text-center">
+        <h2 class="block text-2xl font-semibold text-white">{content.headline}</h2>
+        <p class="mt-2 text-gray-300">{content.intro}</p>
+      </div>
+
+      <div class="mt-8">
+        <!-- Honeypot field (hidden from users) -->
+        <p class="hidden" aria-hidden="true">
+          <label for="bot-field">
+            {t.honeypotLabel}
+            <input type="text" id="bot-field" name="bot-field" tabindex="-1" autocomplete="off" />
+          </label>
+        </p>
+
+        <!-- Grid -->
+        <div class="grid gap-4 sm:grid-cols-2">
+          <!-- First Name Input -->
+          <div class="relative">
+            <input
+              type="text"
+              id={firstNameId}
+              name="first-name"
+              required
+              aria-required="true"
+              class="peer block w-full rounded-lg border-gray-600 bg-neutral-900/10 p-3 text-neutral-400 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 placeholder:text-transparent autofill:pt-6 autofill:pb-2 focus:border-teal-500 focus:pt-6 focus:pb-2 focus:ring-teal-600 disabled:pointer-events-none disabled:opacity-50 sm:p-4 sm:text-sm"
+              placeholder={content.firstName}
+            />
+            <label
+              for={firstNameId}
+              class="pointer-events-none absolute start-0 top-0 h-full origin-top-left truncate border border-transparent p-3 text-sm text-gray-200 transition duration-100 ease-in-out peer-not-placeholder-shown:translate-x-0.5 peer-not-placeholder-shown:-translate-y-1.5 peer-not-placeholder-shown:scale-90 peer-not-placeholder-shown:text-neutral-500 peer-focus:translate-x-0.5 peer-focus:-translate-y-1.5 peer-focus:scale-90 peer-focus:text-teal-500 peer-disabled:pointer-events-none peer-disabled:opacity-50 sm:p-4"
+            >
+              {content.firstName}
+            </label>
+          </div>
+
+          <!-- Last Name Input -->
+          <div class="relative">
+            <input
+              type="text"
+              id={lastNameId}
+              name="last-name"
+              required
+              aria-required="true"
+              class="peer block w-full rounded-lg border-gray-600 bg-neutral-900/10 p-3 text-neutral-400 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 placeholder:text-transparent autofill:pt-6 autofill:pb-2 focus:border-teal-500 focus:pt-6 focus:pb-2 focus:ring-teal-600 disabled:pointer-events-none disabled:opacity-50 sm:p-4 sm:text-sm"
+              placeholder={content.lastName}
+            />
+            <label
+              for={lastNameId}
+              class="pointer-events-none absolute start-0 top-0 h-full origin-top-left truncate border border-transparent p-3 text-sm text-gray-200 transition duration-100 ease-in-out peer-not-placeholder-shown:translate-x-0.5 peer-not-placeholder-shown:-translate-y-1.5 peer-not-placeholder-shown:scale-90 peer-not-placeholder-shown:text-neutral-500 peer-focus:translate-x-0.5 peer-focus:-translate-y-1.5 peer-focus:scale-90 peer-focus:text-teal-500 peer-disabled:pointer-events-none peer-disabled:opacity-50 sm:p-4"
+            >
+              {content.lastName}
+            </label>
+          </div>
+
+          <!-- Email Input -->
+          <div class="relative">
+            <input
+              type="email"
+              id={emailId}
+              name="email"
+              required
+              aria-required="true"
+              autocomplete="email"
+              class="peer block w-full rounded-lg border-gray-600 bg-neutral-900/10 p-3 text-neutral-400 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 placeholder:text-transparent autofill:pt-6 autofill:pb-2 focus:border-teal-500 focus:pt-6 focus:pb-2 focus:ring-teal-600 disabled:pointer-events-none disabled:opacity-50 sm:p-4 sm:text-sm"
+              placeholder={content.email}
+            />
+            <label
+              for={emailId}
+              class="pointer-events-none absolute start-0 top-0 h-full origin-top-left truncate border border-transparent p-3 text-sm text-gray-200 transition duration-100 ease-in-out peer-not-placeholder-shown:translate-x-0.5 peer-not-placeholder-shown:-translate-y-1.5 peer-not-placeholder-shown:scale-90 peer-not-placeholder-shown:text-neutral-500 peer-focus:translate-x-0.5 peer-focus:-translate-y-1.5 peer-focus:scale-90 peer-focus:text-teal-500 peer-disabled:pointer-events-none peer-disabled:opacity-50 sm:p-4"
+            >
+              {content.email}
+            </label>
+          </div>
+
+          <!-- Phone Input -->
+          <div class="relative">
+            <input
+              type="tel"
+              id={phoneId}
+              name="phone"
+              required
+              aria-required="true"
+              autocomplete="tel"
+              class="peer block w-full rounded-lg border-gray-600 bg-neutral-900/10 p-3 text-neutral-400 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 placeholder:text-transparent autofill:pt-6 autofill:pb-2 focus:border-teal-500 focus:pt-6 focus:pb-2 focus:ring-teal-600 disabled:pointer-events-none disabled:opacity-50 sm:p-4 sm:text-sm"
+              placeholder={content.phone}
+            />
+            <label
+              for={phoneId}
+              class="pointer-events-none absolute start-0 top-0 h-full origin-top-left truncate border border-transparent p-3 text-sm text-gray-200 transition duration-100 ease-in-out peer-not-placeholder-shown:translate-x-0.5 peer-not-placeholder-shown:-translate-y-1.5 peer-not-placeholder-shown:scale-90 peer-not-placeholder-shown:text-neutral-500 peer-focus:translate-x-0.5 peer-focus:-translate-y-1.5 peer-focus:scale-90 peer-focus:text-teal-500 peer-disabled:pointer-events-none peer-disabled:opacity-50 sm:p-4"
+            >
+              {content.phone}
+            </label>
+          </div>
+
+          <!-- Company Size Select -->
+          <div class="col-span-full">
+            <label for={companySizeId} class="mb-2 block text-sm font-medium text-gray-200">
+              {content.companySize}
+            </label>
+            <select
+              id={companySizeId}
+              name="company-size"
+              required
+              aria-required="true"
+              data-hs-select={JSON.stringify({
+                placeholder: content.companySizeOptions[0],
+                toggleTag:
+                  '<button type="button" aria-expanded="false"><span class="me-2" data-icon></span><span class="text-gray-200" data-title></span><span class="absolute top-1/2 end-3 -translate-y-1/2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-gray-500"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 9l4 -4l4 4" /><path d="M16 15l-4 4l-4 -4" /></svg></span></button>',
+                toggleClasses:
+                  "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-3 sm:py-4 px-4 pe-9 flex text-nowrap w-full cursor-pointer bg-neutral-900/10 border border-gray-600 rounded-lg text-start text-sm focus:border-teal-500 focus:ring-teal-600 before:absolute before:inset-0 before:z-[1] text-neutral-400",
+                dropdownClasses:
+                  "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 bg-[#0b2223] border border-gray-700 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300",
+                optionClasses:
+                  "py-2 px-4 w-full text-sm text-gray-200 cursor-pointer hover:bg-teal-800 transition-colors rounded-lg focus:outline-none focus:bg-neutral-800 hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50",
+                optionTemplate:
+                  '<div class="flex justify-between items-center w-full"><span data-title></span><span class="hidden hs-selected:block"><svg class="shrink-0 size-3.5 text-teal-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>',
+              })}
+              class="hidden"
+            >
+              {
+                content.companySizeOptions.map((option, index) => (
+                  <option
+                    value={index === 0 ? "" : option}
+                    disabled={index === 0}
+                    selected={index === 0}
+                  >
+                    {option}
+                  </option>
+                ))
+              }
+            </select>
+          </div>
+
+          <!-- Company Activity Select -->
+          <div class="col-span-full">
+            <label for={companyActivityId} class="mb-2 block text-sm font-medium text-gray-200">
+              {content.companyActivity}
+            </label>
+            <p class="sr-only" id={`${companyActivityId}-help`}>{content.companyActivityHelp}</p>
+            <select
+              id={companyActivityId}
+              name="company-activity"
+              required
+              aria-required="true"
+              aria-describedby={`${companyActivityId}-help`}
+              data-hs-select={JSON.stringify({
+                placeholder: content.companyActivityOptions[0],
+                toggleTag:
+                  '<button type="button" aria-expanded="false"><span class="me-2" data-icon></span><span class="text-gray-200" data-title></span><span class="absolute top-1/2 end-3 -translate-y-1/2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-gray-500"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 9l4 -4l4 4" /><path d="M16 15l-4 4l-4 -4" /></svg></span></button>',
+                toggleClasses:
+                  "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-3 sm:py-4 px-4 pe-9 flex text-nowrap w-full cursor-pointer bg-neutral-900/10 border border-gray-600 rounded-lg text-start text-sm focus:border-teal-500 focus:ring-teal-600 before:absolute before:inset-0 before:z-[1] text-neutral-400",
+                dropdownClasses:
+                  "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 bg-[#0b2223] border border-gray-700 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300",
+                optionClasses:
+                  "py-2 px-4 w-full text-sm text-gray-200 cursor-pointer hover:bg-teal-800 transition-colors rounded-lg focus:outline-none focus:bg-neutral-800 hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50",
+                optionTemplate:
+                  '<div class="flex justify-between items-center w-full"><span data-title></span><span class="hidden hs-selected:block"><svg class="shrink-0 size-3.5 text-teal-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>',
+              })}
+              class="hidden"
+            >
+              {
+                content.companyActivityOptions.map((option, index) => (
+                  <option
+                    value={index === 0 ? "" : option}
+                    disabled={index === 0}
+                    selected={index === 0}
+                  >
+                    {option}
+                  </option>
+                ))
+              }
+            </select>
+          </div>
+
+          <!-- Security Level Select -->
+          <div class="col-span-full">
+            <label for={securityLevelId} class="mb-2 block text-sm font-medium text-gray-200">
+              {content.securityLevel}
+            </label>
+            <p class="sr-only" id={`${securityLevelId}-help`}>{content.securityLevelHelp}</p>
+            <select
+              id={securityLevelId}
+              name="security-level"
+              required
+              aria-required="true"
+              aria-describedby={`${securityLevelId}-help`}
+              data-hs-select={JSON.stringify({
+                placeholder: content.securityLevelOptions[0],
+                toggleTag:
+                  '<button type="button" aria-expanded="false"><span class="me-2" data-icon></span><span class="text-gray-200" data-title></span><span class="absolute top-1/2 end-3 -translate-y-1/2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-gray-500"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 9l4 -4l4 4" /><path d="M16 15l-4 4l-4 -4" /></svg></span></button>',
+                toggleClasses:
+                  "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-3 sm:py-4 px-4 pe-9 flex text-nowrap w-full cursor-pointer bg-neutral-900/10 border border-gray-600 rounded-lg text-start text-sm focus:border-teal-500 focus:ring-teal-600 before:absolute before:inset-0 before:z-[1] text-neutral-400",
+                dropdownClasses:
+                  "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 bg-[#0b2223] border border-gray-700 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300",
+                optionClasses:
+                  "py-2 px-4 w-full text-sm text-gray-200 cursor-pointer hover:bg-teal-800 transition-colors rounded-lg focus:outline-none focus:bg-neutral-800 hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50",
+                optionTemplate:
+                  '<div class="flex justify-between items-center w-full"><span data-title></span><span class="hidden hs-selected:block"><svg class="shrink-0 size-3.5 text-teal-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>',
+              })}
+              class="hidden"
+            >
+              {
+                content.securityLevelOptions.map((option, index) => (
+                  <option
+                    value={index === 0 ? "" : option}
+                    disabled={index === 0}
+                    selected={index === 0}
+                  >
+                    {option}
+                  </option>
+                ))
+              }
+            </select>
+          </div>
+        </div>
+        <!-- End Grid -->
+
+        <!-- Consent Checkbox -->
+        <div class="mt-5 flex items-start">
+          <div class="flex h-5 items-center">
+            <input
+              id={consentId}
+              name="consent"
+              type="checkbox"
+              required
+              aria-required="true"
+              aria-describedby={`${consentId}-label`}
+              class="mt-0.5 shrink-0 rounded border-gray-600 bg-neutral-900/10 text-teal-600 checked:border-teal-500 checked:bg-teal-500 focus:ring-teal-500 focus:ring-offset-gray-800"
+            />
+          </div>
+          <div class="ms-3">
+            <label id={`${consentId}-label`} for={consentId} class="text-sm text-gray-300">
+              {content.consentText}
+            </label>
+          </div>
+        </div>
+        <!-- End Checkbox -->
+
+        <!-- Submit Button -->
+        <div class="mt-5">
+          <button
+            type="submit"
+            class="inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-linear-to-r from-cyan-800 to-teal-600 bg-clip-padding px-4 py-3 text-base font-medium text-white hover:from-cyan-900 hover:to-teal-700 focus:from-cyan-800 focus:to-teal-700 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50"
+          >
+            {content.submitLabel}
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- End Card -->
+  </div>
+</form>

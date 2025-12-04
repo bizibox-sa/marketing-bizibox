@@ -1,0 +1,184 @@
+---
+import Section from "../Section.astro";
+import { Picture } from "astro:assets";
+import johnDoe from "../../assets/avatars/john-doe.avif";
+import janeSmith from "../../assets/avatars/jane-smith.avif";
+import aliceJohnson from "../../assets/avatars/alice-johnson.avif";
+import michaelBrown from "../../assets/avatars/michael-brown.avif";
+
+// Testimonials content interface
+export interface TestimonialsContent {
+  tagline?: string;
+  headline?: string;
+  subline?: string;
+  items?: {
+    quote: string;
+    author: string;
+    position: string;
+  }[];
+}
+
+// Props interface for Testimonials component
+export interface Props {
+  content: TestimonialsContent;
+}
+
+// Destructure content prop
+const { content } = Astro.props;
+
+// Internationalization
+const i18n = {
+  fr: {
+    previous: "Précédent",
+    next: "Suivant",
+  },
+  en: {
+    previous: "Previous",
+    next: "Next",
+  },
+  de: {
+    previous: "Zurück",
+    next: "Weiter",
+  },
+};
+
+const locale = Astro.currentLocale || "fr";
+const t = i18n[locale as keyof typeof i18n] || i18n.fr;
+---
+
+<Section
+  as="section"
+  class="bg-white"
+  id="testimonials"
+  containerClass="pt-16 sm:pt-32 pb-12 sm:pb-16"
+>
+  <div class="mx-auto mb-4 max-w-2xl text-center md:mb-24">
+    <p
+      class="mb-3 bg-linear-to-r from-cyan-700 to-teal-600 bg-clip-text text-lg font-bold text-transparent"
+    >
+      {content.tagline}
+    </p>
+    <h2 slot="heading" class="mb-6 text-4xl font-bold text-gray-900 sm:text-5xl">
+      {content.headline}
+    </h2>
+    <p class="text-lg text-gray-600">
+      {content.subline}
+    </p>
+  </div>
+
+  <div
+    data-hs-carousel='{
+  "loadingClasses": "opacity-0",
+  "dotsItemClasses": "hs-carousel-active:bg-teal-700 hs-carousel-active:border-teal-700 size-3 border border-gray-400 rounded-full cursor-pointer bg-white",
+  "slidesQty": {
+    "xs": 1,
+    "lg": 2
+  }
+}'
+    class="relative"
+  >
+    <!-- Navigation buttons positioned absolutely above carousel -->
+    <div class="absolute z-20 hidden gap-2 md:-top-12 md:right-4 md:flex">
+      <button
+        type="button"
+        class="hs-carousel-prev hs-carousel-disabled:opacity-50 hs-carousel-disabled:pointer-events-none inline-flex h-10 w-10 items-center justify-center rounded-lg bg-teal-600 text-white transition-colors hover:bg-teal-700 focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:outline-hidden"
+      >
+        <span class="sr-only">{t.previous}</span>
+        <svg
+          class="size-5 shrink-0"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m15 18-6-6 6-6"></path>
+        </svg>
+      </button>
+      <button
+        type="button"
+        class="hs-carousel-next hs-carousel-disabled:opacity-50 hs-carousel-disabled:pointer-events-none inline-flex h-10 w-10 items-center justify-center rounded-lg bg-teal-600 text-white transition-colors hover:bg-teal-700 focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:outline-hidden"
+      >
+        <span class="sr-only">{t.next}</span>
+        <svg
+          class="size-5 shrink-0"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m9 18 6-6-6-6"></path>
+        </svg>
+      </button>
+    </div>
+    <div class="hs-carousel w-full overflow-hidden rounded-lg bg-white">
+      <div class="relative -mx-1 min-h-96">
+        <div
+          class="hs-carousel-body absolute start-0 top-0 bottom-0 flex flex-nowrap opacity-0 transition-transform duration-700"
+        >
+          {
+            content.items?.map((item) => (
+              <div class="hs-carousel-slide w-full px-4 py-8">
+                <article class="group relative h-full overflow-hidden rounded-2xl border border-gray-200/50 bg-white/80 p-8 shadow-sm backdrop-blur-sm transition-all duration-200 hover:shadow-lg">
+                  <div class="relative z-10 flex h-full flex-col justify-between">
+                    <div>
+                      <svg
+                        class="mb-4 h-8 w-8 text-teal-600/20"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                      </svg>
+
+                      <blockquote class="mb-6 text-base leading-relaxed text-gray-700 sm:text-lg">
+                        {item.quote}
+                      </blockquote>
+                    </div>
+
+                    <footer class="flex items-center gap-4 border-t border-gray-100 pt-6">
+                      <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-cyan-600 to-teal-600 font-semibold text-white">
+                        <Picture
+                          class="h-12 w-12 rounded-full object-cover"
+                          src={
+                            item.author === "John Doe"
+                              ? johnDoe
+                              : item.author === "Jane Smith"
+                                ? janeSmith
+                                : item.author === "Alice Johnson"
+                                  ? aliceJohnson
+                                  : michaelBrown
+                          }
+                          formats={["avif", "webp"]}
+                          alt={item.author}
+                        />
+                      </div>
+
+                      <div>
+                        <p class="font-semibold text-gray-900">{item.author}</p>
+                        <p class="text-sm text-gray-500">{item.position}</p>
+                      </div>
+                    </footer>
+                  </div>
+                </article>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+    <div
+      class="hs-carousel-pagination absolute start-0 end-0 -bottom-4 flex justify-center gap-x-2"
+    >
+    </div>
+  </div>
+</Section>

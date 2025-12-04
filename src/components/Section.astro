@@ -1,0 +1,123 @@
+---
+/**
+ * Section - Semantic and accessible section component
+ *
+ * Best practices implemented:
+ * - WCAG 2.1 Level AA compliance
+ * - Semantic HTML5 structure
+ * - Proper ARIA labeling with aria-labelledby
+ * - SEO-friendly with proper heading hierarchy
+ * - Responsive container system
+ * - TypeScript typed with HTMLAttributes extension
+ *
+ * @example
+ * <Section id="about">
+ *   <h2 slot="heading">About Us</h2>
+ *   <p>Content here...</p>
+ * </Section>
+ */
+
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"section"> {
+  /**
+   * Unique identifier for the section (required for accessibility)
+   * Will be used as the section id and to generate the heading id
+   */
+  id: string;
+
+  /**
+   * Custom container classes (in addition to default responsive padding)
+   * @default undefined
+   */
+  containerClass?: string;
+
+  /**
+   * Semantic tag to use (section, article, aside, etc.)
+   * @default "section"
+   */
+  as?: "section" | "article" | "aside" | "main" | "div";
+}
+
+const {
+  id,
+  containerClass = "",
+  as: Tag = "section",
+  class: className = "",
+  ...rest
+} = Astro.props;
+
+// Generate the heading ID based on section ID
+const headingId = `${id}-heading`;
+
+// Validate that id is provided
+if (!id) {
+  throw new Error(
+    `Section component requires an 'id' prop for accessibility. Please provide a unique id.`
+  );
+}
+---
+
+<Tag id={id} aria-labelledby={headingId} class:list={[className, "section"]} {...rest}>
+  <div class:list={["mx-auto w-full max-w-7xl px-4 sm:px-8", containerClass]}>
+    <!-- Main content slot with heading slot support -->
+    <slot />
+  </div>
+</Tag>
+
+<script>
+  /**
+   * Automatically assigns the heading ID to the first heading element
+   * within the heading slot for proper aria-labelledby association
+   * Searches deeply within nested elements to find the heading
+   */
+  function initSectionHeadings() {
+    // Find all sections with aria-labelledby attribute
+    const sections = document.querySelectorAll(
+      "section[aria-labelledby], article[aria-labelledby]"
+    );
+
+    sections.forEach((section) => {
+      const headingId = section.getAttribute("aria-labelledby");
+      if (!headingId) return;
+
+      // Find the first heading element (h1-h6) with slot="heading" anywhere in the section
+      const heading = section.querySelector('[slot="heading"]');
+
+      if (heading && headingId) {
+        // Find the actual heading element (h1-h6) within the slotted content
+        let actualHeading = heading;
+
+        // If the slotted element is not itself a heading, search within it
+        if (!["H1", "H2", "H3", "H4", "H5", "H6"].includes(heading.tagName)) {
+          const foundHeading = heading.querySelector("h1, h2, h3, h4, h5, h6");
+          if (foundHeading) {
+            actualHeading = foundHeading;
+          }
+        }
+
+        if (actualHeading) {
+          // Set the ID on the heading element
+          actualHeading.id = headingId;
+        }
+      }
+    });
+  }
+
+  // Initialize on page load
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initSectionHeadings);
+  } else {
+    initSectionHeadings();
+  }
+
+  // Reinitialize on navigation (for SPAs/view transitions)
+  document.addEventListener("astro:page-load", initSectionHeadings);
+</script>
+
+<style>
+  /* Ensure proper spacing and semantics */
+  .section {
+    position: relative;
+  }
+</style>

@@ -1,0 +1,66 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  type?: "website" | "article";
+  siteName?: string;
+  twitterSite?: string;
+  schema?: unknown; // Any JSON-LD object (Organization, WebPage, etc.)
+}
+
+const {
+  title,
+  description,
+  image,
+  type = "website",
+  siteName = "Bizibox",
+  twitterSite,
+  schema,
+} = Astro.props;
+
+// Build a canonical-like URL for social tags.
+// If `site` is not configured yet, fall back to Astro.url.
+const canonicalURL = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site).toString()
+  : Astro.url.toString();
+
+// Default social image (update this to your actual OG image path)
+const socialImage = image ?? "/og-default.jpg";
+
+// Map Astro current locale to a valid Open Graph locale code
+const localeCode = Astro.currentLocale ?? "fr";
+const ogLocaleMap: Record<string, string> = {
+  fr: "fr_FR",
+  en: "en_US",
+  de: "de_DE",
+};
+const ogLocale = ogLocaleMap[localeCode] ?? localeCode;
+---
+
+<!-- Duplicate title/description as meta name for some crawlers -->
+<meta name="title" content={title} />
+{description && <meta name="description" content={description} />}
+
+<!-- Open Graph -->
+<meta property="og:type" content={type} />
+<meta property="og:title" content={title} />
+{description && <meta property="og:description" content={description} />}
+<meta property="og:site_name" content={siteName} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:locale" content={ogLocale} />
+{socialImage && <meta property="og:image" content={socialImage} />}
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+{description && <meta name="twitter:description" content={description} />}
+{socialImage && <meta name="twitter:image" content={socialImage} />}
+{twitterSite && <meta name="twitter:site" content={twitterSite} />}
+
+<!-- Optional JSON-LD structured data -->
+{schema && (
+  <script type="application/ld+json">
+    {JSON.stringify(schema)}
+  </script>
+)}

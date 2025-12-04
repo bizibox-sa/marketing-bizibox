@@ -1,0 +1,131 @@
+---
+import Section from "../Section.astro";
+
+// FAQ content interface
+export interface FaqContent {
+  tagline?: string;
+  headline?: string;
+  subline?: string;
+  checks?: string[];
+  items?: {
+    question: string;
+    answer: string;
+  }[];
+}
+
+// Props interface for FAQ component
+export interface Props {
+  content: FaqContent;
+}
+
+// Destructure content prop
+const { content } = Astro.props;
+---
+
+<Section as="section" class="bg-slate-50" id="faq" containerClass="py-16 sm:py-32">
+  <!-- Grid -->
+  <div class="grid gap-x-24 gap-y-16 px-2 lg:grid-cols-5">
+    <div class="lg:col-span-2">
+      <div class="text-center lg:text-left">
+        <p
+          class="mb-3 bg-linear-to-r from-cyan-700 to-teal-600 bg-clip-text text-lg font-bold text-transparent"
+        >
+          {content.tagline}
+        </p>
+        <h2 slot="heading" class="mb-4 text-4xl font-bold text-gray-800 sm:mb-8 sm:text-5xl">
+          {content.headline}
+        </h2>
+        <ul class="hidden space-y-3 lg:block">
+          {
+            content.checks?.slice(0, 3).map((item) => (
+              <li class="flex items-start gap-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="relative top-1 size-5.5 shrink-0 text-teal-600"
+                  aria-hidden="true"
+                >
+                  <>
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                    <path d="M9 12l2 2l4 -4" />
+                  </>
+                </svg>
+                <p class="text-lg font-medium text-gray-600">{item}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+    <!-- End Col -->
+
+    <div class="lg:col-span-3">
+      <!-- Accordion -->
+      <div class="hs-accordion-group divide-y divide-gray-200">
+        {
+          content.items?.map((item, index) => (
+            <div
+              class={`hs-accordion ${index === 0 ? "active" : ""} pb-3 not-first:pt-6`}
+              id={`hs-faq-heading-${index}`}
+            >
+              <button
+                class="hs-accordion-toggle group inline-flex w-full items-center justify-between gap-x-3 rounded-lg pb-3 text-start text-lg font-semibold text-gray-800 transition hover:text-teal-700 focus:text-teal-700 focus:outline-hidden sm:text-2xl"
+                aria-expanded={index === 0 ? "true" : "false"}
+                aria-controls={`hs-faq-collapse-${index}`}
+              >
+                {item.question}
+                <svg
+                  class="hs-accordion-active:hidden block size-5 shrink-0 text-gray-600 group-hover:text-gray-500"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+                <svg
+                  class="hs-accordion-active:block hidden size-5 shrink-0 text-gray-600 group-hover:text-gray-500"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="m18 15-6-6-6 6" />
+                </svg>
+              </button>
+              <div
+                id={`hs-faq-collapse-${index}`}
+                class={`hs-accordion-content ${index === 0 ? "" : "hidden"} w-full overflow-hidden transition-[height] duration-300`}
+                role="region"
+                aria-labelledby={`hs-faq-heading-${index}`}
+              >
+                <p class="text-gray-600">{item.answer}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+      <!-- End Accordion -->
+    </div>
+    <!-- End Col -->
+  </div>
+  <!-- End Grid -->
+</Section>

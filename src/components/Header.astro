@@ -1,0 +1,112 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import LanguageSwitcher from "./ui/LanguageSwitcher.astro";
+import Image from "astro/components/Image.astro";
+import LogoAltFull from "../assets/branding/bizibox-logo-leaf-full.png";
+
+// Props interface for Header component
+export interface Props {
+  showNav?: boolean;
+}
+
+// Destructure props for Header component
+const { showNav = true } = Astro.props;
+
+// Get current locale from Astro.currentLocale with fallback
+const locale = Astro.currentLocale || "fr";
+
+// Compute home URL for the current locale using Astro i18n helper
+const homeHref = getRelativeLocaleUrl(locale, "");
+
+// Internationalized labels based on current locale
+const i18n = {
+  fr: {
+    homeLabel: "Aller à la page d'accueil de Bizibox",
+    navLabel: "Navigation principale",
+    logoAlt: "Logo de Bizibox",
+    home: "Accueil",
+    services: "Services",
+    about: "A propos",
+    testimonials: "Témoignages",
+    faq: "FAQ",
+  },
+  en: {
+    homeLabel: "Go to Bizibox homepage",
+    navLabel: "Main navigation",
+    logoAlt: "Bizibox Logo",
+    home: "Home",
+    services: "Features",
+    about: "About",
+    testimonials: "Testimonials",
+    faq: "FAQ",
+  },
+  de: {
+    homeLabel: "Zur Bizibox-Startseite gehen",
+    navLabel: "Hauptnavigation",
+    logoAlt: "Bizibox-Logo",
+    home: "Startseite",
+    services: "Dienstleistungen",
+    about: "Über uns",
+    testimonials: "Referenzen",
+    faq: "FAQ",
+  },
+};
+
+// Get translations for the current locale with fallback to French
+const t = i18n[locale as keyof typeof i18n] || i18n.fr;
+---
+
+<header class="bg-transparent">
+  <div class="mx-auto flex max-w-7xl items-center justify-between gap-x-4 px-4 py-4 sm:px-8">
+    <!-- Brand / logo -->
+    <a href={homeHref} class="inline-flex items-center gap-x-2">
+      <!-- Simple logo placeholder -->
+      <Image
+        src={LogoAltFull}
+        priority
+        alt={t.logoAlt}
+        class="h-11 w-auto object-contain select-none"
+      />
+      <span class="sr-only">{t.homeLabel}</span>
+    </a>
+
+    <div class="flex items-center gap-x-6">
+      {
+        showNav && (
+          <nav aria-label={t.navLabel} class="hidden md:block">
+            <ul class="flex items-center gap-x-4 text-sm font-medium text-gray-300">
+              <li>
+                <a href="/" class="hover:text-white" aria-current="page">
+                  {t.home}
+                </a>
+              </li>
+              <li>
+                <a href="#services" class="hover:text-white">
+                  {t.services}
+                </a>
+              </li>
+              <li>
+                <a href="#about" class="hover:text-white">
+                  {t.about}
+                </a>
+              </li>
+              <li>
+                <a href="#testimonials" class="hover:text-white">
+                  {t.testimonials}
+                </a>
+              </li>
+              <li>
+                <a href="#faq" class="hover:text-white">
+                  {t.faq}
+                </a>
+              </li>
+            </ul>
+          </nav>
+        )
+      }
+
+      <!-- Language switcher -->
+      <LanguageSwitcher />
+    </div>
+  </div>
+</header>

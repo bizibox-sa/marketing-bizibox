@@ -1,0 +1,127 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+// Supported locales and their labels
+const locales = [
+  { code: "fr", label: "Français", short: "FR" },
+  { code: "en", label: "English", short: "EN" },
+  { code: "de", label: "Deutsch", short: "DE" },
+] as const;
+
+// Get current locale from Astro.currentLocale with fallback
+const locale = Astro.currentLocale || "fr";
+const currentLocale = locale as (typeof locales)[number]["code"];
+
+// Extract page path (everything after the locale)
+const segments = Astro.url.pathname.split("/").filter(Boolean);
+const pagePath = segments.slice(1).join("/");
+
+// Build localized links for the current page
+const items = locales.map((locale) => ({
+  ...locale,
+  href: getRelativeLocaleUrl(locale.code, pagePath || ""),
+  isCurrent: locale.code === currentLocale,
+}));
+
+const currentItem = items.find((item) => item.isCurrent) ?? items[0];
+
+// Internationalized screen reader labels based on current locale
+const srLabels: Record<string, string> = {
+  fr: `Changer de langue (actuel : ${currentItem.label})`,
+  en: `Change language (current: ${currentItem.label})`,
+  de: `Sprache ändern (aktuell: ${currentItem.label})`,
+};
+
+// Internationalized dropdown aria-label
+const dropdownLabels: Record<string, string> = {
+  fr: "Menu déroulant",
+  en: "Dropdown",
+  de: "Dropdown-Menü",
+};
+
+const srLabel = srLabels[locale] || srLabels.fr;
+const dropdownLabel = dropdownLabels[locale] || dropdownLabels.en;
+---
+
+<div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+  <button
+    class="hs-dropdown-toggle focus-ring bg-opacity-50 inline-flex items-center gap-x-1.5 rounded-full border border-gray-600 bg-white/5 bg-clip-padding px-2.5 py-1.5 text-sm font-medium text-neutral-400 shadow-2xs backdrop-blur-sm backdrop-filter hover:bg-white/10 disabled:pointer-events-none disabled:opacity-50"
+    type="button"
+    id="language-switcher-button"
+    aria-haspopup="menu"
+    aria-expanded="false"
+    aria-label={dropdownLabel}
+    aria-controls="language-switcher-menu"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="size-4.5"
+      aria-hidden="true"
+      ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+        d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path><path d="M3.6 9h16.8"></path><path
+        d="M3.6 15h16.8"></path><path d="M11.5 3a17 17 0 0 0 0 18"></path><path
+        d="M12.5 3a17 17 0 0 1 0 18"></path></svg
+    >
+    <!-- Current language -->
+    <span aria-hidden="true" class="uppercase">
+      {currentItem.short}
+    </span>
+
+    <!-- Screen reader only text for accessibility -->
+    <span class="sr-only">
+      {srLabel}
+    </span>
+
+    <!-- Dropdown chevron icon -->
+    <svg
+      class="hs-dropdown-open:rotate-180 size-4"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg
+    >
+  </button>
+
+  <div
+    class="hs-dropdown-menu duration hs-dropdown-open:opacity-100 z-50 mt-2 hidden min-w-40 rounded-lg border border-gray-600 bg-[#0E2A2B] opacity-0 shadow-md transition-[opacity,margin]"
+    id="language-switcher-menu"
+    aria-labelledby="language-switcher-button"
+  >
+    <ul class="space-y-0.5">
+      {
+        items.map((item) => (
+          <li class="text-gray-300 hover:text-white">
+            <a
+              class={`focus:bg-gray-teal-700 flex items-center gap-x-3.5 rounded-lg px-3 py-2 text-sm hover:bg-teal-800 focus:outline-hidden ${
+                item.isCurrent ? "font-semibold text-white" : ""
+              }`}
+              href={item.href}
+              lang={item.code}
+              hreflang={item.code}
+              aria-current={item.isCurrent ? "page" : undefined}
+            >
+              <span>{item.label}</span>
+              <span class="text-xs uppercase" aria-hidden="true">
+                {item.short}
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,140 @@
+---
+import Section from "../Section.astro";
+import { Picture } from "astro:assets";
+import myImage from "../../assets/images/illu-5.jpg";
+import myImage2 from "../../assets/images/illu-6.jpg";
+import myImage3 from "../../assets/images/illu-7.jpg";
+
+// About content interface
+export interface AboutContent {
+  tagline1: string;
+  headline1: string;
+  subline1: string;
+  claims1?: { keyword: string; detail: string }[];
+  tagline2: string;
+  headline2: string;
+  subline2: string;
+  claims2?: { keyword: string; detail: string }[];
+  tagline3: string;
+  headline3: string;
+  subline3: string;
+  claims3?: { keyword: string; detail: string }[];
+}
+
+// Props interface for About component
+export interface Props {
+  content: AboutContent;
+}
+
+// Destructure content prop
+const { content } = Astro.props;
+
+// Internationalized labels based on current locale
+const i18n = {
+  fr: {
+    srTitle: "Pourquoi faire appel à Bizibox ?",
+    image1Alt: "Professionnel de la cybersécurité analysant des données sur ordinateur",
+    image2Alt: "Équipe d'experts en cybersécurité en réunion stratégique",
+    image3Alt: "Infrastructure de sécurité informatique moderne et technologies avancées",
+  },
+  en: {
+    srTitle: "Why choose Bizibox?",
+    image1Alt: "Cybersecurity professional analyzing data on computer",
+    image2Alt: "Team of cybersecurity experts in strategic meeting",
+    image3Alt: "Modern IT security infrastructure and advanced technologies",
+  },
+  de: {
+    srTitle: "Warum Bizibox wählen?",
+    image1Alt: "Cybersicherheitsexperte analysiert Daten am Computer",
+    image2Alt: "Team von Cybersicherheitsexperten in strategischer Besprechung",
+    image3Alt: "Moderne IT-Sicherheitsinfrastruktur und fortschrittliche Technologien",
+  },
+};
+
+// Get current locale from Astro.currentLocale with fallback
+const locale = Astro.currentLocale || "fr";
+const t = i18n[locale as keyof typeof i18n] || i18n.fr;
+
+// Structure articles data for loop
+const articlesData = [
+  { index: 1, image: myImage, imageAlt: t.image1Alt, imageOrder: "right" as const },
+  { index: 2, image: myImage2, imageAlt: t.image2Alt, imageOrder: "left" as const },
+  { index: 3, image: myImage3, imageAlt: t.image3Alt, imageOrder: "right" as const },
+];
+
+// Map articles data to include content
+const articles = articlesData.map(({ index, image, imageAlt, imageOrder }) => ({
+  tagline: content[`tagline${index}` as keyof AboutContent],
+  headline: content[`headline${index}` as keyof AboutContent],
+  subline: content[`subline${index}` as keyof AboutContent],
+  claims: content[`claims${index}` as keyof AboutContent] as
+    | { keyword: string; detail: string }[]
+    | undefined,
+  image,
+  imageAlt,
+  imageOrder,
+}));
+---
+
+<Section as="section" class="bg-white" id="about" containerClass="py-16 sm:py-32">
+  <div class="grid gap-x-24 gap-y-8 lg:gap-y-32">
+    <h2 slot="heading" class="sr-only">{t.srTitle}</h2>
+    {
+      articles.map((article, index) => {
+        const headingId = `about-heading-${index + 1}`;
+        const isImageLeft = article.imageOrder === "left";
+
+        return (
+          <div class="grid gap-x-18 gap-y-4 lg:grid-cols-2">
+            <article class={isImageLeft ? "lg:order-2" : ""} aria-labelledby={headingId}>
+              <p class="mb-3 bg-linear-to-r from-cyan-700 to-teal-600 bg-clip-text text-lg font-bold text-transparent">
+                {article.tagline}
+              </p>
+              <h3 id={headingId} class="mb-6 text-3xl font-semibold text-gray-800 sm:text-4xl">
+                {article.headline}
+              </h3>
+              <p class="mb-6 text-lg text-gray-600">{article.subline}</p>
+              <ul class="hidden list-inside space-y-2 sm:block">
+                {article.claims?.map((claim) => (
+                  <li class="flex items-start gap-4">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="relative top-1 size-6 shrink-0 text-teal-600"
+                      aria-hidden="true"
+                    >
+                      <>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                        <path d="M9 12l2 2l4 -4" />
+                      </>
+                    </svg>
+                    <div class="">
+                      <span class="text-lg font-bold text-gray-600">{claim.keyword}</span>
+                      <span class="text-lg text-gray-600">{claim.detail}</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </article>
+            <div class={`w-full rounded-xl bg-slate-100 p-4 ${isImageLeft ? "lg:order-1" : ""}`}>
+              <Picture
+                class="h-full w-full rounded-lg object-cover"
+                formats={["avif", "webp"]}
+                src={article.image}
+                alt={article.imageAlt}
+              />
+            </div>
+          </div>
+        );
+      })
+    }
+  </div>
+</Section>

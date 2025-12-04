@@ -1,0 +1,41 @@
+{
+  // Default formatter: Prettier and format on save
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+
+  // Dedicated formatter for Astro
+  "[astro]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // Dedicated formatter for TypeScript (also Prettier)
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // ===== ESLint =====
+  // Use ESLint with flat config support
+  "eslint.useFlatConfig": true,
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "astro"],
+
+  // We don't automatically fix everything on each save,
+  // but VS Code will offer the action "ESLint: Fix all auto-fixable"
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+
+  // ===== Tailwind CSS =====
+  // To help the Tailwind CSS extension better understand your files
+  "files.associations": {
+    "*.css": "tailwindcss"
+  }
+}

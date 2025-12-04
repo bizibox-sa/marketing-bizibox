@@ -1,0 +1,58 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+const locale = Astro.currentLocale || "de";
+const homeUrl = getRelativeLocaleUrl(locale, "");
+
+const content = {
+  title: "Nachricht erfolgreich gesendet",
+  headline: "Vielen Dank für Ihre Nachricht!",
+  message:
+    "Wir haben Ihre Anfrage erhalten und werden uns so schnell wie möglich bei Ihnen melden.",
+  ctaLabel: "Zurück zur Startseite",
+};
+---
+
+<BaseLayout
+  title={content.title}
+  description="Ihre Kontaktanfrage wurde erfolgreich gesendet."
+  robots="noindex,follow"
+>
+  <main
+    class="flex min-h-screen items-center justify-center bg-linear-to-br from-gray-900 via-neutral-900 to-black px-4 py-16"
+  >
+    <div class="mx-auto max-w-2xl text-center">
+      <!-- Success Icon -->
+      <div class="mb-8 flex justify-center">
+        <div class="flex h-24 w-24 items-center justify-center rounded-full bg-teal-600/20">
+          <svg
+            class="h-12 w-12 text-teal-500"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <h1 class="mb-4 text-4xl font-bold text-white">{content.headline}</h1>
+      <p class="mb-8 text-lg text-gray-300">{content.message}</p>
+
+      <!-- CTA Button -->
+      <a
+        href={homeUrl}
+        class="inline-flex items-center justify-center gap-x-2 rounded-lg border border-transparent bg-linear-to-r from-cyan-800 to-teal-600 px-6 py-3 text-base font-medium text-white hover:from-cyan-900 hover:to-teal-700 focus:from-cyan-800 focus:to-teal-700 focus:outline-hidden"
+      >
+        {content.ctaLabel}
+      </a>
+    </div>
+  </main>
+</BaseLayout>

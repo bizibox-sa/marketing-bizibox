@@ -1,0 +1,114 @@
+---
+/**
+ * SkipLink - Accessible skip navigation component
+ *
+ * Provides keyboard users with the ability to skip repetitive navigation
+ * and jump directly to the main content of the page.
+ *
+ * Best practices implemented:
+ * - WCAG 2.1 Level A compliance (Success Criterion 2.4.1)
+ * - Visible only on keyboard focus
+ * - High contrast for visibility
+ * - Positioned at the start of the page
+ * - Clear, descriptive text
+ * - Fully internationalized with i18n support
+ */
+
+interface Props {
+  /**
+   * The ID of the main content element to skip to
+   * @default "main-content"
+   */
+  targetId?: string;
+}
+
+const { targetId = "main-content" } = Astro.props;
+
+// Internationalized labels based on current locale
+const labels: Record<string, string> = {
+  fr: "Aller au contenu principal",
+  en: "Skip to main content",
+  de: "Zum Hauptinhalt springen",
+};
+
+// Get current locale from Astro.currentLocale with fallback
+const currentLocale = Astro.currentLocale || "fr";
+const label = labels[currentLocale] || labels.fr;
+---
+
+<a
+  class="bg-gray- 900 fixed top-0 left-0 z-9999 -translate-y-full rounded-br-lg border-3 border-transparent px-6 py-4 text-base leading-normal font-semibold text-white no-underline shadow-md transition-[transform,border-color] duration-200 ease-in-out focus:translate-y-0 focus:border-blue-500 focus:outline-none focus:hover:border-blue-400 focus:hover:bg-gray-800 active:bg-black motion-reduce:transition-none contrast-more:border-3 contrast-more:border-current contrast-more:focus:outline-3 contrast-more:focus:outline-offset-2 forced-colors:border-2 forced-colors:focus:outline-2 forced-colors:focus:outline-offset-2"
+  href={`#${targetId}`}
+  data-skip-link
+>
+  {label}
+</a>
+
+<script>
+  /**
+   * Enhances skip link functionality with smooth scrolling
+   * and proper focus management
+   */
+  function initSkipLink() {
+    const skipLink = document.querySelector("[data-skip-link]");
+    if (!(skipLink instanceof HTMLAnchorElement)) return;
+
+    if (!skipLink) return;
+
+    skipLink.addEventListener("click", (event) => {
+      const targetId = skipLink.getAttribute("href")?.slice(1);
+
+      if (!targetId) return;
+
+      const targetElement = document.getElementById(targetId);
+
+      if (!targetElement) {
+        console.warn(`Skip link target element with id "${targetId}" not found`);
+        return;
+      }
+
+      // Prevent default anchor behavior
+      event.preventDefault();
+
+      // Ensure target is focusable
+      if (!targetElement.hasAttribute("tabindex")) {
+        targetElement.setAttribute("tabindex", "-1");
+      }
+
+      // Smooth scroll to target
+      const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      targetElement.scrollIntoView({
+        behavior: mediaQuery.matches ? "auto" : "smooth",
+        block: "start",
+      });
+
+      // Focus the target element
+      // Small delay to ensure scroll completes
+      setTimeout(() => {
+        targetElement.focus();
+
+        // Remove temporary tabindex after focus
+        if (targetElement.getAttribute("tabindex") === "-1") {
+          targetElement.addEventListener(
+            "blur",
+            () => {
+              targetElement.removeAttribute("tabindex");
+            },
+            { once: true }
+          );
+        }
+      }, 100);
+    });
+  }
+
+  // Initialize on page load
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initSkipLink);
+  } else {
+    initSkipLink();
+  }
+
+  // Reinitialize on navigation (for SPAs/view transitions)
+  document.addEventListener("astro:page-load", initSkipLink);
+</script>

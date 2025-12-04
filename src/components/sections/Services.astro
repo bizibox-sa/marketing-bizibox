@@ -1,0 +1,63 @@
+---
+import Section from "../Section.astro";
+import Cta from "../ui/Cta.astro";
+
+export interface ServicesContent {
+  tagline?: string;
+  headline?: string;
+  subline?: string;
+  items?: {
+    icon: string;
+    title: string;
+    description: string;
+  }[];
+}
+
+// Props interface for Services component
+export interface Props {
+  content: ServicesContent;
+}
+
+// Destructure content prop
+const { content } = Astro.props;
+---
+
+<Section
+  as="section"
+  class="bg-slate-50"
+  id="services"
+  containerClass="pt-16 sm:pt-32 pb-12 sm:pb-16"
+>
+  <div class="mb-16">
+    <p
+      class="mb-2 bg-linear-to-r from-cyan-700 to-teal-600 bg-clip-text text-center text-lg font-bold text-transparent"
+    >
+      {content.tagline}
+    </p>
+    <h2 slot="heading" class="mb-6 text-center text-4xl font-bold text-gray-800 sm:text-5xl">
+      {content.headline}
+    </h2>
+    <p class="mx-auto max-w-2xl text-center text-lg text-gray-600">
+      {content.subline}
+    </p>
+  </div>
+  <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+    {
+      content.items?.map((item, index) => (
+        <article
+          class={`flex flex-col gap-4 rounded-xl border border-slate-200 bg-white p-6 text-center ${index >= 4 ? "hidden md:flex" : ""}`}
+        >
+          <div
+            class="mx-auto flex items-center justify-center rounded-full border border-slate-200 bg-white p-2.5 text-3xl text-teal-800 sm:p-3.5"
+            set:html={item.icon}
+          />
+          <h3 class="text-2xl font-semibold text-gray-800">{item.title}</h3>
+          <p class="text-base text-gray-500">{item.description}</p>
+        </article>
+      ))
+    }
+  </div>
+  <div class="mt-8 text-center sm:mt-16">
+    <Cta href="#hero" variant="primary" size="lg">J'opte pour la sécurité</Cta>
+  </div>
+</Section>

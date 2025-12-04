@@ -1,0 +1,66 @@
+---
+import Section from "../Section.astro";
+import Cta from "../ui/Cta.astro";
+
+// Contact content interface
+export interface ContactContent {
+  tagline?: string;
+  headline?: string;
+  subline?: string;
+  ctaLabel?: string;
+}
+
+// Props interface for Contact component
+export interface Props {
+  content: ContactContent;
+}
+
+// Destructure content prop
+const { content } = Astro.props;
+---
+
+<Section
+  as="section"
+  class="bg-white"
+  id="contact"
+  containerClass="pt-12 sm:pt-24 pb-20 sm:pb-32 text-center"
+>
+  <div
+    class="relative mx-auto overflow-hidden rounded-2xl bg-teal-950 bg-linear-to-bl from-teal-900 via-transparent px-4 py-8 antialiased shadow-lg sm:p-16"
+  >
+    <!-- Decorative circles background -->
+    <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+      <!-- Large circle - top right -->
+      <div
+        class="absolute -top-20 -right-20 hidden h-64 w-64 rounded-full border border-teal-700/30 bg-teal-800/10 sm:block"
+      >
+      </div>
+      <!-- Medium circle - bottom left -->
+      <div
+        class="absolute -bottom-16 -left-16 hidden h-48 w-48 rounded-full border border-teal-700/30 bg-teal-800/10 sm:block"
+      >
+      </div>
+      <!-- Small circle - center right -->
+      <div
+        class="absolute top-1/3 right-1/4 hidden h-32 w-32 rounded-full border border-teal-700/30 bg-teal-800/10 sm:block"
+      >
+      </div>
+    </div>
+
+    <!-- Content (relative to appear above circles) -->
+    <div class="relative z-10">
+      <p
+        class="mb-2 bg-linear-to-r from-cyan-600 to-teal-500 bg-clip-text font-medium text-transparent"
+      >
+        {content.tagline}
+      </p>
+      <h2 slot="heading" class="mb-8 text-3xl font-bold text-gray-50 sm:text-5xl">
+        {content.headline}
+      </h2>
+      <p class="mb-8 hidden text-lg text-gray-200 md:block">
+        {content.subline}
+      </p>
+      <Cta href="mailto:contact@bizibox.com" size="lg">{content.ctaLabel}</Cta>
+    </div>
+  </div>
+</Section>
