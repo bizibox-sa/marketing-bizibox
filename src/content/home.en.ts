@@ -1,8 +1,38 @@
 export const homePageEn = {
   meta: {
-    title: "Bizibox - Cybersecurity for businesses in Luxembourg and the Greater Region",
+    title: "Bizibox - Cybersecurity for Businesses in Luxembourg and the Greater East Region",
     description:
       "Protect your systems, data, and customers with Bizibox's cybersecurity services: audits, monitoring, incident response, and regulatory compliance.",
+  },
+  ui: {
+    languageSwitcher: {
+      changeLanguage: "Change language",
+      currentLanguage: "current",
+      dropdownLabel: "Dropdown",
+    },
+    skipLink: {
+      skipToMainContent: "Skip to main content",
+    },
+    header: {
+      homeLabel: "Go to Bizibox homepage",
+      navLabel: "Main navigation",
+      logoAlt: "Bizibox Logo",
+      home: "Home",
+      services: "Services",
+      about: "About",
+      testimonials: "Testimonials",
+      faq: "FAQ",
+    },
+    footer: {
+      logoAlt: "Bizibox Logo",
+    },
+    form: {
+      honeypotLabel: "Do not fill in this field",
+    },
+    carousel: {
+      previous: "Previous",
+      next: "Next",
+    },
   },
   hero: {
     tagline: "Bizibox: at your service for 5 years",

@@ -3,6 +3,9 @@ import Section from "./Section.astro";
 import Image from "astro/components/Image.astro";
 import LogoAltFull from "../assets/branding/bizibox-logo-leaf-full.png";
 import Cta from "./ui/Cta.astro";
+import { homePageFr } from "../content/home.fr";
+import { homePageEn } from "../content/home.en";
+import { homePageDe } from "../content/home.de";
 
 // Footer content interface
 export interface FooterContent {
@@ -44,24 +47,18 @@ export interface Props {
 // Destructure content prop
 const { content } = Astro.props;
 
-// Internationalization
-const i18n = {
-  fr: {
-    logoAlt: "Logo de Bizibox",
-  },
-  en: {
-    logoAlt: "Bizibox Logo",
-  },
-  de: {
-    logoAlt: "Bizibox-Logo",
-  },
+// Get content based on locale
+const uiContentMap = {
+  fr: homePageFr.ui.footer,
+  en: homePageEn.ui.footer,
+  de: homePageDe.ui.footer,
 };
 
 // Get current locale from Astro.currentLocale with fallback
 const locale = Astro.currentLocale || "fr";
 
 // Get translations for the current locale with fallback to French
-const t = i18n[locale as keyof typeof i18n] || i18n.fr;
+const t = uiContentMap[locale as keyof typeof uiContentMap] || uiContentMap.fr;
 
 /**
  * Footer - Global site footer for the Bizibox landing page
