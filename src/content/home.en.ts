@@ -1,6 +1,6 @@
 export const homePageEn = {
   meta: {
-    title: "Bizibox - Cybersecurity for Businesses in Luxembourg and the Greater East Region",
+    title: "Bizibox - Cybersecurity for Businesses in Luxembourg and the French Grand Est Region",
     description:
       "Protect your systems, data, and customers with Bizibox's cybersecurity services: audits, monitoring, incident response, and regulatory compliance.",
   },
@@ -283,7 +283,7 @@ export const homePageEn = {
     footerLabel: "Footer",
     footerBottomLabel: "Footer bottom",
     brandCopy:
-      "Your trusted cybersecurity partner for businesses in Luxembourg and the Greater Region.",
+      "Your trusted cybersecurity partner for businesses in Luxembourg and the French Grand Est region.",
     tagList: ["Cybersecurity", "Audit", "Luxembourg · Grand Est"],
     navLabel: "Navigation",
     legalLabel: "Legal notices",
@@ -308,17 +308,17 @@ export const homePageEn = {
     ],
     socialList: [
       {
-        href: "https://www.linkedin.com/company/bizibox",
+        href: "https://www.linkedin.com/company/bizibox-s-a/",
         ariaLabel: "Bizibox on LinkedIn",
         icon: '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" class="size-5"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M17 2a5 5 0 0 1 5 5v10a5 5 0 0 1 -5 5h-10a5 5 0 0 1 -5 -5v-10a5 5 0 0 1 5 -5zm-9 8a1 1 0 0 0 -1 1v5a1 1 0 0 0 2 0v-5a1 1 0 0 0 -1 -1m6 0a3 3 0 0 0 -1.168 .236l-.125 .057a1 1 0 0 0 -1.707 .707v5a1 1 0 0 0 2 0v-3a1 1 0 0 1 2 0v3a1 1 0 0 0 2 0v-3a3 3 0 0 0 -3 -3m-6 -3a1 1 0 0 0 -.993 .883l-.007 .127a1 1 0 0 0 1.993 .117l.007 -.127a1 1 0 0 0 -1 -1"></path></svg>',
       },
       {
-        href: "https://www.facebook.com/bizibox",
+        href: "https://www.facebook.com/profile.php?id=61584779154326",
         ariaLabel: "Bizibox on Facebook",
         icon: '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" class="size-5"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M18 2a1 1 0 0 1 .993 .883l.007 .117v4a1 1 0 0 1 -.883 .993l-.117 .007h-3v1h3a1 1 0 0 1 .991 1.131l-.02 .112l-1 4a1 1 0 0 1 -.858 .75l-.113 .007h-2v6a1 1 0 0 1 -.883 .993l-.117 .007h-4a1 1 0 0 1 -.993 -.883l-.007 -.117v-6h-2a1 1 0 0 1 -.993 -.883l-.007 -.117v-4a1 1 0 0 1 .883 -.993l.117 -.007h2v-1a6 6 0 0 1 5.775 -5.996l.225 -.004h3z"></path></svg>',
       },
       {
-        href: "https://www.instagram.com/bizibox",
+        href: "https://www.instagram.com/biziboxsa",
         ariaLabel: "Bizibox on Instagram",
         icon: '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" class="size-5"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M16 3a5 5 0 0 1 5 5v8a5 5 0 0 1 -5 5h-8a5 5 0 0 1 -5 -5v-8a5 5 0 0 1 5 -5zm-4 5a4 4 0 0 0 -3.995 3.8l-.005 .2a4 4 0 1 0 4 -4m4.5 -1.5a1 1 0 0 0 -.993 .883l-.007 .127a1 1 0 0 0 1.993 .117l.007 -.127a1 1 0 0 0 -1 -1"></path></svg>',
       },
