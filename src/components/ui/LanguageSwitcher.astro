@@ -1,5 +1,8 @@
 ---
 import { getRelativeLocaleUrl } from "astro:i18n";
+import { homePageFr } from "../../content/home.fr";
+import { homePageEn } from "../../content/home.en";
+import { homePageDe } from "../../content/home.de";
 
 // Supported locales and their labels
 const locales = [
@@ -25,22 +28,18 @@ const items = locales.map((locale) => ({
 
 const currentItem = items.find((item) => item.isCurrent) ?? items[0];
 
-// Internationalized screen reader labels based on current locale
-const srLabels: Record<string, string> = {
-  fr: `Changer de langue (actuel : ${currentItem.label})`,
-  en: `Change language (current: ${currentItem.label})`,
-  de: `Sprache ändern (aktuell: ${currentItem.label})`,
+// Get content based on locale
+const contentMap = {
+  fr: homePageFr.ui.languageSwitcher,
+  en: homePageEn.ui.languageSwitcher,
+  de: homePageDe.ui.languageSwitcher,
 };
 
-// Internationalized dropdown aria-label
-const dropdownLabels: Record<string, string> = {
-  fr: "Menu déroulant",
-  en: "Dropdown",
-  de: "Dropdown-Menü",
-};
+const content = contentMap[locale as keyof typeof contentMap] || contentMap.fr;
 
-const srLabel = srLabels[locale] || srLabels.fr;
-const dropdownLabel = dropdownLabels[locale] || dropdownLabels.en;
+// Build screen reader label and dropdown label
+const srLabel = `${content.changeLanguage} (${content.currentLanguage} : ${currentItem.label})`;
+const dropdownLabel = content.dropdownLabel;
 ---
 
 <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">

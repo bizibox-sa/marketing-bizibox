@@ -1,4 +1,8 @@
 ---
+import { homePageFr } from "../../content/home.fr";
+import { homePageEn } from "../../content/home.en";
+import { homePageDe } from "../../content/home.de";
+
 // Hero form content interface
 export interface HeroFormContent {
   headline: string;
@@ -27,21 +31,15 @@ export interface Props {
 // Destructure content prop
 const { content } = Astro.props;
 
-// Internationalization for honeypot
-const i18n = {
-  fr: {
-    honeypotLabel: "Ne remplissez pas ce champ si vous êtes humain",
-  },
-  en: {
-    honeypotLabel: "Don't fill this out if you're human",
-  },
-  de: {
-    honeypotLabel: "Füllen Sie dieses Feld nicht aus, wenn Sie ein Mensch sind",
-  },
+// Get UI content based on locale
+const uiContentMap = {
+  fr: homePageFr.ui.form,
+  en: homePageEn.ui.form,
+  de: homePageDe.ui.form,
 };
 
 const locale = Astro.currentLocale || "fr";
-const t = i18n[locale as keyof typeof i18n] || i18n.fr;
+const t = uiContentMap[locale as keyof typeof uiContentMap] || uiContentMap.fr;
 
 // Generate unique IDs for accessibility
 const formId = "contact-form";

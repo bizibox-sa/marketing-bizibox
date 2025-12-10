@@ -4,6 +4,36 @@ export const homePageFr = {
     description:
       "Protégez vos systèmes, vos données et vos clients grâce aux services de cybersécurité Bizibox : audits, supervision, réponse à incident et conformité réglementaire.",
   },
+  ui: {
+    languageSwitcher: {
+      changeLanguage: "Changer de langue",
+      currentLanguage: "actuel",
+      dropdownLabel: "Menu déroulant",
+    },
+    skipLink: {
+      skipToMainContent: "Aller au contenu principal",
+    },
+    header: {
+      homeLabel: "Aller à la page d'accueil de Bizibox",
+      navLabel: "Navigation principale",
+      logoAlt: "Logo de Bizibox",
+      home: "Accueil",
+      services: "Services",
+      about: "À propos",
+      testimonials: "Témoignages",
+      faq: "FAQ",
+    },
+    footer: {
+      logoAlt: "Logo de Bizibox",
+    },
+    form: {
+      honeypotLabel: "Ne pas remplir ce champ",
+    },
+    carousel: {
+      previous: "Précédent",
+      next: "Suivant",
+    },
+  },
   hero: {
     tagline: "Bizibox : à votre service depuis 5 ans",
     headline: "Les grandes technologies pour les petites entreprises",
@@ -239,7 +269,7 @@ export const homePageFr = {
       {
         question: "Quelles sont les étapes en cas d'incident de sécurité ?",
         answer:
-          "Nous suivons un protocole établi qui inclut la détection, l'analyse, la containment, l'éradication et la récupération pour minimiser les impacts.",
+          "Nous suivons un protocole établi qui inclut la détection, l'analyse, le confinement, l'éradication et la récupération pour minimiser les impacts.",
       },
       {
         question: "Comment formez-vous les employés à la cybersécurité ?",

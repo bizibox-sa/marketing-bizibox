@@ -1,4 +1,8 @@
 ---
+import { homePageFr } from "../../content/home.fr";
+import { homePageEn } from "../../content/home.en";
+import { homePageDe } from "../../content/home.de";
+
 /**
  * SkipLink - Accessible skip navigation component
  *
@@ -24,16 +28,17 @@ interface Props {
 
 const { targetId = "main-content" } = Astro.props;
 
-// Internationalized labels based on current locale
-const labels: Record<string, string> = {
-  fr: "Aller au contenu principal",
-  en: "Skip to main content",
-  de: "Zum Hauptinhalt springen",
+// Get content based on locale
+const contentMap = {
+  fr: homePageFr.ui.skipLink,
+  en: homePageEn.ui.skipLink,
+  de: homePageDe.ui.skipLink,
 };
 
 // Get current locale from Astro.currentLocale with fallback
 const currentLocale = Astro.currentLocale || "fr";
-const label = labels[currentLocale] || labels.fr;
+const content = contentMap[currentLocale as keyof typeof contentMap] || contentMap.fr;
+const label = content.skipToMainContent;
 ---
 
 <a

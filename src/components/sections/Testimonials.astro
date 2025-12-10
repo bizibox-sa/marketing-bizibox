@@ -5,6 +5,9 @@ import johnDoe from "../../assets/avatars/john-doe.avif";
 import janeSmith from "../../assets/avatars/jane-smith.avif";
 import aliceJohnson from "../../assets/avatars/alice-johnson.avif";
 import michaelBrown from "../../assets/avatars/michael-brown.avif";
+import { homePageFr } from "../../content/home.fr";
+import { homePageEn } from "../../content/home.en";
+import { homePageDe } from "../../content/home.de";
 
 // Testimonials content interface
 export interface TestimonialsContent {
@@ -26,24 +29,15 @@ export interface Props {
 // Destructure content prop
 const { content } = Astro.props;
 
-// Internationalization
-const i18n = {
-  fr: {
-    previous: "Précédent",
-    next: "Suivant",
-  },
-  en: {
-    previous: "Previous",
-    next: "Next",
-  },
-  de: {
-    previous: "Zurück",
-    next: "Weiter",
-  },
+// Get UI content based on locale
+const uiContentMap = {
+  fr: homePageFr.ui.carousel,
+  en: homePageEn.ui.carousel,
+  de: homePageDe.ui.carousel,
 };
 
 const locale = Astro.currentLocale || "fr";
-const t = i18n[locale as keyof typeof i18n] || i18n.fr;
+const t = uiContentMap[locale as keyof typeof uiContentMap] || uiContentMap.fr;
 ---
 
 <Section

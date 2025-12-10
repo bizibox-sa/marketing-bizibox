@@ -1,8 +1,38 @@
 export const homePageDe = {
   meta: {
-    title: "Bizibox - Cybersicherheit für Unternehmen in Luxemburg und der Großregion Ost",
+    title: "Bizibox - Cybersicherheit für Unternehmen in Luxemburg und der Großregion",
     description:
       "Schützen Sie Ihre Systeme, Ihre Daten und Ihre Kunden mit den Cybersicherheitsdiensten von Bizibox: Audits, Überwachung, Reaktion auf Vorfälle und regulatorische Compliance.",
+  },
+  ui: {
+    languageSwitcher: {
+      changeLanguage: "Sprache ändern",
+      currentLanguage: "aktuell",
+      dropdownLabel: "Dropdown-Menü",
+    },
+    skipLink: {
+      skipToMainContent: "Zum Hauptinhalt springen",
+    },
+    header: {
+      homeLabel: "Zur Bizibox-Startseite gehen",
+      navLabel: "Hauptnavigation",
+      logoAlt: "Bizibox-Logo",
+      home: "Startseite",
+      services: "Dienstleistungen",
+      about: "Über uns",
+      testimonials: "Referenzen",
+      faq: "FAQ",
+    },
+    footer: {
+      logoAlt: "Bizibox-Logo",
+    },
+    form: {
+      honeypotLabel: "Füllen Sie dieses Feld nicht aus",
+    },
+    carousel: {
+      previous: "Zurück",
+      next: "Weiter",
+    },
   },
   hero: {
     tagline: "Bizibox: seit 5 Jahren zu Ihren Diensten",
@@ -46,7 +76,7 @@ export const homePageDe = {
       submitLabel: "Anfrage senden",
     },
     clients: {
-      taglineNumber: "1 000",
+      taglineNumber: "1.000",
       taglinePlus: "+",
       taglineLabel: "Personen und Unternehmen vertrauen auf Bizibox",
     },
@@ -258,13 +288,13 @@ export const homePageDe = {
     footerLabel: "Fußzeile",
     footerBottomLabel: "Untere Fußzeile",
     brandCopy:
-      "Ihr vertrauenswürdiger Partner für Cybersicherheit für Unternehmen in Luxemburg und der Großregion Ost.",
+      "Ihr vertrauenswürdiger Partner für Cybersicherheit für Unternehmen in Luxemburg und der Großregion.",
     tagList: ["Cybersicherheit", "Audit", "Luxemburg · Grand Est"],
     navLabel: "Navigation",
     legalLabel: "Rechtliche Hinweise",
     socialLabel: "Soziale Netzwerke",
     contactLabel: "Kontaktieren Sie uns",
-    copyrightLabel: "Bizibox S.A. · 3 rue du Fossé",
+    copyrightLabel: "Bizibox S.A. · Alle Rechte vorbehalten.",
     contactList: {
       addressLine1: "Bizibox SA, 3 rue du Fossé",
       addressLine2: "L-4123 Esch-sur-Alzette, Luxembourg",
