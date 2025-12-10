@@ -6,6 +6,7 @@ export interface ServicesContent {
   tagline?: string;
   headline?: string;
   subline?: string;
+  cta?: string;
   items?: {
     icon: string;
     title: string;
@@ -58,6 +59,6 @@ const { content } = Astro.props;
     }
   </div>
   <div class="mt-8 text-center sm:mt-16">
-    <Cta href="#hero" variant="primary" size="lg">J'opte pour la sécurité</Cta>
+    <Cta href="#hero" variant="primary" size="lg">{content.cta}</Cta>
   </div>
 </Section>
