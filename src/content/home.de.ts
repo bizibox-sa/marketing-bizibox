@@ -268,7 +268,7 @@ export const homePageDe = {
     contactList: {
       addressLine1: "Bizibox SA, 3 rue du Fossé",
       addressLine2: "L-4123 Esch-sur-Alzette, Luxembourg",
-      email: "contact@bizibox.lu",
+      email: "contact@bizibox.eu",
     },
     navList: [
       { href: "#services", label: "Dienstleistungen" },
