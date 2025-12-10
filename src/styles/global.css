@@ -30,6 +30,16 @@
     cursor: pointer;
   }
 
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  [tabindex]:not([tabindex="-1"]),
+  [role="button"] {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500;
+  }
+
   /* Reduces animations for users who have enabled a reduced motion preference */
   @media (prefers-reduced-motion: reduce) {
     *,
@@ -47,7 +57,7 @@
 @layer components {
   /* Base CTA */
   .cta {
-    @apply inline-flex items-center justify-center rounded-lg font-medium tracking-tight transition-colors duration-150 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 focus-visible:outline-none;
+    @apply inline-flex items-center justify-center rounded-lg font-medium tracking-tight transition-colors duration-150;
   }
 
   /* Sizes */
@@ -65,23 +75,23 @@
 
   /* Variants */
   .cta--primary {
-    @apply bg-teal-700 text-white hover:bg-teal-600 focus-visible:ring-teal-600;
+    @apply bg-teal-700 text-white hover:bg-teal-600;
   }
 
   .cta--secondary {
-    @apply bg-slate-900 text-slate-50 hover:bg-slate-800 focus-visible:ring-slate-900;
+    @apply bg-slate-900 text-slate-50 hover:bg-slate-800;
   }
 
   .cta--tertiary {
-    @apply border border-slate-300 text-slate-900 hover:bg-slate-100 focus-visible:ring-slate-400;
+    @apply border border-slate-300 text-slate-900 hover:bg-slate-100;
   }
 
   .cta--ghost {
-    @apply bg-transparent text-slate-900 hover:bg-slate-100 focus-visible:ring-slate-400;
+    @apply bg-transparent text-slate-900 hover:bg-slate-100;
   }
 
   .cta--link {
-    @apply bg-transparent text-indigo-600 underline-offset-4 hover:underline focus-visible:ring-indigo-500;
+    @apply bg-transparent text-indigo-600 underline-offset-4 hover:underline;
   }
 
   /* Disabled state for links (<a aria-disabled="true">) */
