@@ -52,7 +52,7 @@ const t = contentMap[locale as keyof typeof contentMap] || contentMap.fr;
           <nav aria-label={t.navLabel} class="hidden md:block">
             <ul class="flex items-center gap-x-4 text-sm font-medium text-gray-300">
               <li>
-                <a href="/" class="hover:text-white" aria-current="page">
+                <a href={homeHref} class="hover:text-white" aria-current="page">
                   {t.home}
                 </a>
               </li>
