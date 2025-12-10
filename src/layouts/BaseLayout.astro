@@ -93,13 +93,19 @@ const hreflangMap: Record<(typeof locales)[number], string> = {
     class="bg-teal-1000 relative min-h-dvh bg-linear-to-bl from-teal-950 via-transparent text-gray-300 antialiased"
   >
     <slot />
-  </body><!-- Preline UI JavaScript imported with correct Astro workaround (see docs) -->
+  </body><!-- Preline UI: Single optimized initialization for both initial load and view transitions -->
   <script>
+    // Import Preline once, Astro will bundle and optimize it
     import "preline/dist/preline.js";
-  </script>
 
-  <!-- Reinitialize Preline after page transitions -->
-  <script>
+    // Initialize on first page load
+    // @ts-expect-error - HSStaticMethods is added by Preline at runtime
+    if (typeof window.HSStaticMethods !== "undefined") {
+      // @ts-expect-error - HSStaticMethods is added by Preline at runtime
+      window.HSStaticMethods.autoInit();
+    }
+
+    // Reinitialize after view transitions
     document.addEventListener("astro:page-load", () => {
       // @ts-expect-error - HSStaticMethods is added by Preline at runtime
       if (typeof window.HSStaticMethods !== "undefined") {
