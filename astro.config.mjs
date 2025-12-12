@@ -35,6 +35,8 @@ export default defineConfig({
         !page.includes("/legal") &&
         // Exclude privacy pages (all languages)
         !page.includes("/privacy") &&
+        // Exclude cookies pages (all languages)
+        !page.includes("/cookies") &&
         // Exclude success pages (all languages)
         !page.includes("/success"),
       i18n: {
