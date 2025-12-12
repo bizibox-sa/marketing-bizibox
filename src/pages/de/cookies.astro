@@ -4,13 +4,17 @@ import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import { homePageDe } from "../../content/home.de";
 
-const content = homePageDe.legal;
+const content = homePageDe.cookies;
+const description =
+  "Cookie-Verwaltungsrichtlinie von Bizibox SA. Informationen über die verwendeten Cookies, deren Zweck und Ihre Einwilligungsoptionen.";
 ---
 
-<BaseLayout title="Impressum - Bizibox" description="Impressum von Bizibox" robots="noindex,follow">
+<BaseLayout title={`${content.title} | Bizibox`} description={description} robots="noindex,follow">
   <Header />
   <main class="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
-    <h1 class="mb-12 text-4xl font-bold text-white sm:text-5xl">{content.title}</h1>
+    <h1 class="mb-12 text-4xl font-bold text-white sm:text-5xl">
+      {content.title}
+    </h1>
     <div class="space-y-10">
       {
         content.sections.map((section) => (

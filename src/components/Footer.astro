@@ -3,6 +3,7 @@ import Section from "./Section.astro";
 import Image from "astro/components/Image.astro";
 import LogoAltFull from "../assets/branding/bizibox-logo-leaf-full.png";
 import Cta from "./ui/Cta.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
 import { homePageFr } from "../content/home.fr";
 import { homePageEn } from "../content/home.en";
 import { homePageDe } from "../content/home.de";
@@ -21,6 +22,7 @@ export interface FooterContent {
   contactList?: {
     addressLine1: string;
     addressLine2: string;
+    phone: string;
     email: string;
   };
   footerBottomLabel: string;
@@ -60,6 +62,24 @@ const locale = Astro.currentLocale || "fr";
 // Get translations for the current locale with fallback to French
 const t = uiContentMap[locale as keyof typeof uiContentMap] || uiContentMap.fr;
 
+// Compute home URL for the current locale
+const homeHref = getRelativeLocaleUrl(locale, "");
+
+// Check if we're on the home page
+const isHomePage = Astro.url.pathname === homeHref || Astro.url.pathname === `${homeHref}/`;
+
+// Build links - for anchors, prefix with homeHref if not on home page
+const buildHref = (href: string) => {
+  if (href.startsWith("#")) {
+    return isHomePage ? href : `${homeHref}${href}`;
+  }
+  // For absolute paths like /legal, /privacy, add locale prefix
+  if (href.startsWith("/") && !href.startsWith(`/${locale}`)) {
+    return getRelativeLocaleUrl(locale, href.substring(1));
+  }
+  return href;
+};
+
 /**
  * Footer - Global site footer for the Bizibox landing page
  *
@@ -97,7 +117,10 @@ const currentYear = new Date().getFullYear();
           {
             content.navList?.map((item) => (
               <li>
-                <a href={item.href} class="text-gray-400 hover:text-white hover:underline">
+                <a
+                  href={buildHref(item.href)}
+                  class="text-gray-400 hover:text-white hover:underline"
+                >
                   {item.label}
                 </a>
               </li>
@@ -113,8 +136,14 @@ const currentYear = new Date().getFullYear();
               <p>{content.contactList.addressLine1}</p>
               <p>{content.contactList.addressLine2}</p>
               <a
+                href={`tel:${content.contactList.phone.replace(/\s/g, "")}`}
+                class="block text-gray-400 hover:text-white hover:underline"
+              >
+                {content.contactList.phone}
+              </a>
+              <a
                 href={`mailto:${content.contactList.email}`}
-                class="text-gray-400 hover:text-white hover:underline"
+                class="block text-gray-400 hover:text-white hover:underline"
               >
                 {content.contactList.email}
               </a>
@@ -141,7 +170,7 @@ const currentYear = new Date().getFullYear();
             content.legalList?.map((item) => (
               <li>
                 <a
-                  href={item.href}
+                  href={buildHref(item.href)}
                   class="text-gray-400 hover:text-white hover:underline"
                   aria-label={item.ariaLabel}
                 >

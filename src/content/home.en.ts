@@ -279,6 +279,194 @@ export const homePageEn = {
       },
     ],
   },
+  legal: {
+    title: "Legal Notice",
+    sections: [
+      {
+        heading: "Site Publisher",
+        content: [
+          "Bizibox SA",
+          "Legal form: Public Limited Company (SA)",
+          "Registered office: 3 rue du Fossé, L-4123 Esch-sur-Alzette, Luxembourg",
+          "SIRET number: 89505809700018",
+          "VAT number: FR30895058097",
+          "Email address: contact@bizibox.eu",
+          "Phone: +33 7 70 46 94 51",
+        ],
+      },
+      {
+        heading: "Publication Director",
+        content: ["Julien Renvoisé"],
+      },
+      {
+        heading: "Website Hosting",
+        content: [
+          "Name: Netlify",
+          "Legal name: Netlify, Inc.",
+          "Address: 512 2nd Street, Suite 200, San Francisco, CA 94107, United States",
+          "Website: https://www.netlify.com",
+          "Contact: via https://www.netlify.com/contact/",
+        ],
+      },
+      {
+        heading: "Activity",
+        content: [
+          "This website presents the cybersecurity services offered by Bizibox SA (audits, monitoring, incident response, compliance, etc.).",
+        ],
+      },
+      {
+        heading: "Intellectual Property",
+        content: [
+          "All content (texts, images, logos, videos, etc.) on this site are the exclusive property of Bizibox SA — unless otherwise stated. Any reproduction, representation, modification, publication, transmission, alteration, total or partial, or commercialization of the site or its content is prohibited without prior written consent from Bizibox SA.",
+        ],
+      },
+      {
+        heading: "Liability",
+        content: [
+          "Bizibox SA implements all reasonable means to ensure reliable information and regular updates of the site. However, Bizibox SA cannot guarantee the accuracy, completeness, or timeliness of the information published. Consequently, Bizibox SA's liability cannot be engaged in case of error or omission.",
+        ],
+      },
+      {
+        heading: "Applicable Law & Jurisdiction",
+        content: [
+          "Any dispute relating to the interpretation or execution of these legal notices is subject to Luxembourg law (or, where applicable, to the legislation applicable according to the location of the registered office).",
+        ],
+      },
+    ],
+  },
+  privacy: {
+    title: "Privacy Policy",
+    intro:
+      'This privacy policy aims to inform users of the Bizibox SA website (hereinafter "the Site") about how their personal data is collected, used, and protected in accordance with the General Data Protection Regulation (GDPR – EU 2016/679) and applicable legislation.',
+    sections: [
+      {
+        heading: "Data Controller",
+        content: [
+          "Bizibox SA",
+          "3 rue du Fossé, L-4123 Esch-sur-Alzette, Luxembourg",
+          "SIRET: 89505809700018",
+          "VAT: FR30895058097",
+          "Email: contact@bizibox.eu",
+        ],
+      },
+      {
+        heading: "Personal Data Collected",
+        content: [
+          "Data provided voluntarily: last name, first name, email address, phone number, company name, information sent via forms.",
+          "Data collected automatically: IP address, browser type, pages viewed, navigation data, technical and analytical cookies.",
+          "Contractual data: information necessary for the execution of services, billing data, technical logs only when contractually provided.",
+        ],
+      },
+      {
+        heading: "Processing Purposes",
+        content: [
+          "To respond to requests sent via the website forms, provide a quote or establish commercial contact, manage customer relationships and execute services, improve the operation and security of the site, measure audience, comply with legal obligations.",
+          "Bizibox SA does not sell or rent personal data.",
+        ],
+      },
+      {
+        heading: "Legal Basis for Processing",
+        content: [
+          "The processing is based on the user's consent, the execution of a contract or pre-contractual measures, the legitimate interest of the company, or compliance with legal obligations.",
+        ],
+      },
+      {
+        heading: "Data Recipients",
+        content: [
+          "Data may be transmitted to authorized internal staff, technical service providers, contractual partners necessary for the performance of services, and administrative authorities when required by law.",
+          "No data is transmitted to third parties for commercial purposes.",
+        ],
+      },
+      {
+        heading: "Retention Period",
+        content: [
+          "Contact forms: up to 12 months.",
+          "Customer data: duration of contract + 5 years.",
+          "Billing data: 10 years.",
+          "Analytical cookies: 6 to 13 months.",
+          "Technical logs: up to 12 months.",
+          "Data is then deleted or anonymized.",
+        ],
+      },
+      {
+        heading: "Cookies",
+        content: [
+          "The site uses essential technical cookies and, where applicable, analytical or audience measurement cookies. During the first visit, users can accept or refuse non-essential cookies via the provided banner.",
+          "For more information, please consult the Cookie Policy.",
+        ],
+      },
+      {
+        heading: "Data Security",
+        content: [
+          "Bizibox SA implements technical and organizational measures designed to protect data against unauthorized access, loss, alteration, or unwanted disclosure.",
+        ],
+      },
+      {
+        heading: "User Rights",
+        content: [
+          "In accordance with the GDPR, users have the rights of access, rectification, erasure, opposition, limitation, portability, and the right to withdraw their consent at any time.",
+          "To exercise your rights: contact@bizibox.eu",
+          "They can also contact the CNPD (National Commission for Data Protection – Luxembourg).",
+        ],
+      },
+      {
+        heading: "Transfers Outside the European Union",
+        content: ["No data transfers outside the EU are made without appropriate safeguards."],
+      },
+      {
+        heading: "Policy Modifications",
+        content: [
+          "Bizibox SA may modify this policy at any time. The applicable version is the one in force at the date of consultation of the site.",
+        ],
+      },
+      {
+        heading: "Contact",
+        content: ["Any questions regarding this policy can be addressed to contact@bizibox.eu."],
+      },
+    ],
+  },
+  cookies: {
+    title: "Cookie Management",
+    intro: "",
+    sections: [
+      {
+        heading: "What is a cookie?",
+        content: [],
+      },
+      {
+        heading: "Types of cookies used",
+        content: [],
+      },
+      {
+        heading: "Cookies used on this site",
+        content: [],
+      },
+      {
+        heading: "Retention period",
+        content: [],
+      },
+      {
+        heading: "Cookie management and control",
+        content: [],
+      },
+      {
+        heading: "Browser-specific instructions",
+        content: [],
+      },
+      {
+        heading: "Third-party cookies",
+        content: [],
+      },
+      {
+        heading: "Modifications",
+        content: [],
+      },
+      {
+        heading: "Contact",
+        content: [],
+      },
+    ],
+  },
   footer: {
     footerLabel: "Footer",
     footerBottomLabel: "Footer bottom",
@@ -293,6 +481,7 @@ export const homePageEn = {
     contactList: {
       addressLine1: "Bizibox SA, 3 rue du Fossé",
       addressLine2: "L-4123 Esch-sur-Alzette, Luxembourg",
+      phone: "+33 7 70 46 94 51",
       email: "contact@bizibox.eu",
     },
     navList: [
