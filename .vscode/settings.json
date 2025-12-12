@@ -37,5 +37,18 @@
   // To help the Tailwind CSS extension better understand your files
   "files.associations": {
     "*.css": "tailwindcss"
+  },
+
+  // ===== Files exclusions =====
+  "files.exclude": {
+    "**/.astro": true,
+    "**/dist": true,
+    "**/node_modules": true
+  },
+
+  "search.exclude": {
+    "**/dist": true,
+    "**/.astro": true,
+    "**/node_modules": true
   }
 }
