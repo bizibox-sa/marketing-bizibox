@@ -21,6 +21,12 @@ const locale = Astro.currentLocale || "fr";
 // Compute home URL for the current locale using Astro i18n helper
 const homeHref = getRelativeLocaleUrl(locale, "");
 
+// Check if we're on the home page (path ends with locale or locale/)
+const isHomePage = Astro.url.pathname === homeHref || Astro.url.pathname === `${homeHref}/`;
+
+// Build navigation links - if not on home page, prefix with homeHref
+const buildNavHref = (anchor: string) => (isHomePage ? anchor : `${homeHref}${anchor}`);
+
 // Get content based on locale
 const contentMap = {
   fr: homePageFr.ui.header,
@@ -52,27 +58,31 @@ const t = contentMap[locale as keyof typeof contentMap] || contentMap.fr;
           <nav aria-label={t.navLabel} class="hidden md:block">
             <ul class="flex items-center gap-x-4 text-sm font-medium text-gray-300">
               <li>
-                <a href={homeHref} class="hover:text-white" aria-current="page">
+                <a
+                  href={homeHref}
+                  class="hover:text-white"
+                  aria-current={isHomePage ? "page" : undefined}
+                >
                   {t.home}
                 </a>
               </li>
               <li>
-                <a href="#services" class="hover:text-white">
+                <a href={buildNavHref("#services")} class="hover:text-white">
                   {t.services}
                 </a>
               </li>
               <li>
-                <a href="#about" class="hover:text-white">
+                <a href={buildNavHref("#about")} class="hover:text-white">
                   {t.about}
                 </a>
               </li>
               <li>
-                <a href="#testimonials" class="hover:text-white">
+                <a href={buildNavHref("#testimonials")} class="hover:text-white">
                   {t.testimonials}
                 </a>
               </li>
               <li>
-                <a href="#faq" class="hover:text-white">
+                <a href={buildNavHref("#faq")} class="hover:text-white">
                   {t.faq}
                 </a>
               </li>

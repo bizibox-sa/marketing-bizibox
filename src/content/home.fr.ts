@@ -284,6 +284,196 @@ export const homePageFr = {
       },
     ],
   },
+  legal: {
+    title: "Mentions légales",
+    sections: [
+      {
+        heading: "Éditeur du site",
+        content: [
+          "Bizibox SA",
+          "Forme juridique : Société Anonyme (SA)",
+          "Siège social : 3 rue du Fossé, L-4123 Esch-sur-Alzette, Luxembourg",
+          "Numéro SIRET : 89505809700018",
+          "Numéro de TVA intracommunautaire : FR30895058097",
+          "Adresse e-mail : contact@bizibox.eu",
+          "Téléphone : +33 7 70 46 94 51",
+        ],
+      },
+      {
+        heading: "Directeur de la publication",
+        content: [""],
+      },
+      {
+        heading: "Hébergement du site",
+        content: [
+          "Nom : Netlify",
+          "Raison sociale : Netlify, Inc.",
+          "Adresse : 512 2nd Street, Suite 200, San Francisco, CA 94107, United States",
+          "Site web : https://www.netlify.com",
+          "Contact : via https://www.netlify.com/contact/",
+        ],
+      },
+      {
+        heading: "Activité",
+        content: [
+          "Ce site présente les services de cybersécurité proposés par Bizibox SA (audit, supervision, réponse aux incidents, conformité, etc.).",
+        ],
+      },
+      {
+        heading: "Propriété intellectuelle",
+        content: [
+          "L'ensemble des contenus (textes, images, logos, vidéos, etc.) figurant sur ce site sont la propriété exclusive de Bizibox SA — sauf mentions contraires. Toute reproduction, représentation, modification, publication, transmission, altération, totale ou partielle, ou commercialisation du site ou de ses contenus est interdite sans l'accord préalable écrit de Bizibox SA.",
+        ],
+      },
+      {
+        heading: "Responsabilité",
+        content: [
+          "Bizibox SA met en œuvre tous les moyens raisonnables pour assurer une information fiable et une mise à jour régulière du site. Toutefois, Bizibox SA ne peut garantir l'exactitude, la complétude, ou l'actualité des informations diffusées. En conséquence, la responsabilité de Bizibox SA ne saurait être engagée en cas d'erreur ou d'omission.",
+        ],
+      },
+      {
+        heading: "Droit applicable & juridiction",
+        content: [
+          "Tout litige relatif à l'interprétation ou l'exécution des présentes mentions légales est soumis au droit luxembourgeois (ou, le cas échéant, à la législation applicable selon la localisation du siège social).",
+        ],
+      },
+    ],
+  },
+  privacy: {
+    title: "Politique de confidentialité",
+    intro:
+      "La présente politique de confidentialité a pour objectif d'informer les utilisateurs du site Bizibox SA (ci-après « le Site ») sur la manière dont leurs données personnelles sont collectées, utilisées et protégées conformément au Règlement Général sur la Protection des Données (RGPD – UE 2016/679) et à la législation applicable.",
+    sections: [
+      {
+        heading: "Responsable du traitement",
+        content: [
+          "Bizibox SA",
+          "3 rue du Fossé, L-4123 Esch-sur-Alzette, Luxembourg",
+          "SIRET : 89505809700018",
+          "TVA : FR30895058097",
+          "E-mail : contact@bizibox.eu",
+        ],
+      },
+      {
+        heading: "Données personnelles collectées",
+        content: [
+          "Données fournies volontairement : nom, prénom, adresse e-mail, numéro de téléphone, nom de l'entreprise, informations envoyées via les formulaires.",
+          "Données collectées automatiquement : adresse IP, type de navigateur, pages consultées, données de navigation, cookies techniques et analytiques.",
+          "Données contractuelles : informations nécessaires à l'exécution des prestations, données de facturation, logs techniques uniquement lorsqu'ils sont contractuellement prévus.",
+        ],
+      },
+      {
+        heading: "Finalités du traitement",
+        content: [
+          "Répondre aux demandes envoyées via les formulaires du site, fournir un devis ou établir un contact commercial, gérer la relation client et exécuter les prestations, améliorer le fonctionnement et la sécurité du site, mesurer l'audience, respecter les obligations légales.",
+          "Bizibox SA ne revend ni ne loue les données personnelles.",
+        ],
+      },
+      {
+        heading: "Bases légales du traitement",
+        content: [
+          "Les traitements reposent sur le consentement de l'utilisateur, l'exécution d'un contrat ou de mesures précontractuelles, l'intérêt légitime de l'entreprise ou le respect d'obligations légales.",
+        ],
+      },
+      {
+        heading: "Destinataires des données",
+        content: [
+          "Les données peuvent être transmises au personnel interne habilité, aux prestataires techniques, aux partenaires contractuels nécessaires à la réalisation des prestations et aux autorités administratives lorsque la loi l'exige.",
+          "Aucune donnée n'est transmise à des tiers à des fins commerciales.",
+        ],
+      },
+      {
+        heading: "Durée de conservation",
+        content: [
+          "Formulaires de contact : jusqu'à 12 mois.",
+          "Données clients : durée du contrat + 5 ans.",
+          "Données de facturation : 10 ans.",
+          "Cookies analytiques : 6 à 13 mois.",
+          "Logs techniques : jusqu'à 12 mois.",
+          "Les données sont ensuite supprimées ou anonymisées.",
+        ],
+      },
+      {
+        heading: "Cookies",
+        content: [
+          "Le site utilise des cookies techniques indispensables et, le cas échéant, des cookies analytiques ou de mesure d'audience. Lors de la première visite, l'utilisateur peut accepter ou refuser les cookies non essentiels via le bandeau prévu.",
+          "Pour plus d'informations, consultez la Politique des Cookies.",
+        ],
+      },
+      {
+        heading: "Sécurité des données",
+        content: [
+          "Bizibox SA met en œuvre des mesures techniques et organisationnelles destinées à protéger les données contre l'accès non autorisé, la perte, l'altération ou la divulgation non souhaitée.",
+        ],
+      },
+      {
+        heading: "Droits des utilisateurs",
+        content: [
+          "Conformément au RGPD, les utilisateurs disposent des droits d'accès, de rectification, d'effacement, d'opposition, de limitation, de portabilité et du droit de retirer leur consentement à tout moment.",
+          "Pour exercer vos droits : contact@bizibox.eu",
+          "Ils peuvent également saisir la CNPD (Commission Nationale pour la Protection des Données – Luxembourg).",
+        ],
+      },
+      {
+        heading: "Transferts hors Union européenne",
+        content: ["Aucun transfert de données hors UE n'est réalisé sans garanties appropriées."],
+      },
+      {
+        heading: "Modifications de la politique",
+        content: [
+          "Bizibox SA peut modifier la présente politique à tout moment. La version applicable est celle en vigueur à la date de consultation du site.",
+        ],
+      },
+      {
+        heading: "Contact",
+        content: [
+          "Toute question relative à cette politique peut être adressée à contact@bizibox.eu.",
+        ],
+      },
+    ],
+  },
+  cookies: {
+    title: "Gestion des cookies",
+    intro: "",
+    sections: [
+      {
+        heading: "Qu'est-ce qu'un cookie ?",
+        content: [],
+      },
+      {
+        heading: "Types de cookies utilisés",
+        content: [],
+      },
+      {
+        heading: "Cookies utilisés sur ce site",
+        content: [],
+      },
+      {
+        heading: "Durée de conservation",
+        content: [],
+      },
+      {
+        heading: "Gestion et contrôle des cookies",
+        content: [],
+      },
+      {
+        heading: "Instructions par navigateur",
+        content: [],
+      },
+      {
+        heading: "Cookies tiers",
+        content: [],
+      },
+      {
+        heading: "Modifications",
+        content: [],
+      },
+      {
+        heading: "Contact",
+        content: [],
+      },
+    ],
+  },
   footer: {
     footerLabel: "Pied de page",
     footerBottomLabel: "Bas de page du pied de page",
@@ -298,6 +488,7 @@ export const homePageFr = {
     contactList: {
       addressLine1: "Bizibox SA, 3 rue du Fossé",
       addressLine2: "L-4123 Esch-sur-Alzette, Luxembourg",
+      phone: "+33 7 70 46 94 51",
       email: "contact@bizibox.eu",
     },
     navList: [
