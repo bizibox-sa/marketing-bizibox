@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Seo from "../../components/Seo.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
 
 const locale = Astro.currentLocale || "de";
@@ -19,6 +20,12 @@ const content = {
   description="Ihre Kontaktanfrage wurde erfolgreich gesendet."
   robots="noindex,follow"
 >
+  <Seo
+    slot="head"
+    title={content.title}
+    description="Ihre Kontaktanfrage wurde erfolgreich gesendet."
+    type="website"
+  />
   <main
     class="flex min-h-screen items-center justify-center bg-linear-to-br from-gray-900 via-neutral-900 to-black px-4 py-16"
   >
@@ -49,7 +56,7 @@ const content = {
       <!-- CTA Button -->
       <a
         href={homeUrl}
-        class="inline-flex items-center justify-center gap-x-2 rounded-lg border border-transparent bg-linear-to-r from-cyan-800 to-teal-600 px-6 py-3 text-base font-medium text-white hover:from-cyan-900 hover:to-teal-700 focus:from-cyan-800 focus:to-teal-700 focus:outline-hidden"
+        class="inline-flex min-w-3xs items-center justify-center gap-x-2 rounded-lg border border-transparent bg-linear-to-r from-cyan-800 to-teal-600 bg-clip-padding px-4 py-3 text-base font-medium text-white hover:from-cyan-900 hover:to-teal-700 focus:from-cyan-800 focus:to-teal-700 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 sm:text-lg"
       >
         {content.ctaLabel}
       </a>

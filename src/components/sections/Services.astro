@@ -28,6 +28,8 @@ const { content } = Astro.props;
   class="bg-slate-50"
   id="services"
   containerClass="pt-16 sm:pt-32 pb-12 sm:pb-16"
+  itemscope
+  itemtype="https://schema.org/ItemList"
 >
   <div class="mb-16">
     <p
@@ -47,13 +49,23 @@ const { content } = Astro.props;
       content.items?.map((item, index) => (
         <article
           class={`flex flex-col gap-4 rounded-xl border border-slate-200 bg-white p-6 text-center ${index >= 4 ? "hidden md:flex" : ""}`}
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/Service"
         >
+          <meta itemprop="position" content={(index + 1).toString()} />
           <div
             class="mx-auto flex items-center justify-center rounded-full border border-slate-200 bg-white p-2.5 text-3xl text-teal-800 sm:p-3.5"
             set:html={item.icon}
           />
-          <h3 class="text-2xl font-semibold text-gray-800">{item.title}</h3>
-          <p class="text-base text-gray-500">{item.description}</p>
+          <h3 class="text-2xl font-semibold text-gray-800" itemprop="name">
+            {item.title}
+          </h3>
+          <p class="text-base text-gray-500" itemprop="description">
+            {item.description}
+          </p>
+          <meta itemprop="serviceType" content="Cybersecurity Service" />
+          <meta itemprop="provider" content="Bizibox S.A." />
         </article>
       ))
     }

@@ -474,6 +474,13 @@ export const homePageFr = {
       },
     ],
   },
+  notFound: {
+    title: "Page introuvable",
+    heading: "Oups ! Page introuvable",
+    description: "La page que vous recherchez n'existe pas ou a été déplacée.",
+    message: "Vous pouvez retourner à la page d'accueil ou utiliser le menu pour naviguer.",
+    ctaText: "Retour à l'accueil",
+  },
   footer: {
     footerLabel: "Pied de page",
     footerBottomLabel: "Bas de page du pied de page",

@@ -40,6 +40,26 @@
     @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500;
   }
 
+  /* Form elements line-height fix */
+  [type="text"],
+  input:where(:not([type])),
+  [type="email"],
+  [type="url"],
+  [type="password"],
+  [type="number"],
+  [type="date"],
+  [type="datetime-local"],
+  [type="month"],
+  [type="search"],
+  [type="tel"],
+  [type="time"],
+  [type="week"],
+  [multiple],
+  textarea,
+  select {
+    line-height: 1.25rem !important; /* 20px */
+  }
+
   /* Reduces animations for users who have enabled a reduced motion preference */
   @media (prefers-reduced-motion: reduce) {
     *,
