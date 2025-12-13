@@ -1,6 +1,9 @@
 {
   "name": "Bizibox S.A.",
   "short_name": "Bizibox",
+  "description": "Cybersécurité pour les entreprises au Luxembourg et dans le Grand Est",
+  "start_url": "/fr/",
+  "lang": "fr",
   "icons": [
     {
       "src": "/assets/favicon/web-app-manifest-192x192.png",

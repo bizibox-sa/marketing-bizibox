@@ -5,7 +5,6 @@ export interface Props {
   image?: string;
   type?: "website" | "article";
   siteName?: string;
-  twitterSite?: string;
   schema?: unknown; // Any JSON-LD object (Organization, WebPage, etc.)
 }
 
@@ -15,7 +14,6 @@ const {
   image,
   type = "website",
   siteName = "Bizibox",
-  twitterSite,
   schema,
 } = Astro.props;
 
@@ -25,8 +23,16 @@ const canonicalURL = Astro.site
   ? new URL(Astro.url.pathname, Astro.site).toString()
   : Astro.url.toString();
 
-// Default social image
-const socialImage = image ?? "/assets/og/bizibox-og-default.png";
+// Default social image (must be absolute URL)
+const relativeImage = image ?? "/assets/og/bizibox-og-default.jpg";
+const socialImage = relativeImage.startsWith("http")
+  ? relativeImage
+  : new URL(relativeImage, Astro.site).toString();
+
+// OpenGraph image dimensions (1200x630 is recommended)
+const ogImageWidth = "1200";
+const ogImageHeight = "630";
+const ogImageAlt = title;
 
 // Map Astro current locale to a valid Open Graph locale code
 const localeCode = Astro.currentLocale ?? "fr";
@@ -38,9 +44,8 @@ const ogLocaleMap: Record<string, string> = {
 const ogLocale = ogLocaleMap[localeCode] ?? localeCode;
 ---
 
-<!-- Duplicate title/description as meta name for some crawlers -->
-<meta name="title" content={title} />
-{description && <meta name="description" content={description} />}
+<!-- Note: <title> and <meta name="description"> are handled by BaseLayout to avoid duplication -->
+<!-- Open Graph uses the title and description props for social media tags -->
 
 <!-- Open Graph -->
 <meta property="og:type" content={type} />
@@ -50,13 +55,16 @@ const ogLocale = ogLocaleMap[localeCode] ?? localeCode;
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:locale" content={ogLocale} />
 {socialImage && <meta property="og:image" content={socialImage} />}
+{socialImage && <meta property="og:image:width" content={ogImageWidth} />}
+{socialImage && <meta property="og:image:height" content={ogImageHeight} />}
+{socialImage && <meta property="og:image:type" content="image/jpeg" />}
+{socialImage && <meta property="og:image:alt" content={ogImageAlt} />}
 
 <!-- Twitter Cards -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 {description && <meta name="twitter:description" content={description} />}
 {socialImage && <meta name="twitter:image" content={socialImage} />}
-{twitterSite && <meta name="twitter:site" content={twitterSite} />}
 
 <!-- Optional JSON-LD structured data -->
 {schema && (

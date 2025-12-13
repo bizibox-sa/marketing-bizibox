@@ -478,6 +478,13 @@ export const homePageDe = {
       },
     ],
   },
+  notFound: {
+    title: "Seite nicht gefunden",
+    heading: "Hoppla! Seite nicht gefunden",
+    description: "Die von Ihnen gesuchte Seite existiert nicht oder wurde verschoben.",
+    message: "Sie können zur Startseite zurückkehren oder das Menü zur Navigation verwenden.",
+    ctaText: "Zurück zur Startseite",
+  },
   footer: {
     footerLabel: "Fußzeile",
     footerBottomLabel: "Untere Fußzeile",
@@ -491,7 +498,7 @@ export const homePageDe = {
     copyrightLabel: "Bizibox S.A. · Alle Rechte vorbehalten.",
     contactList: {
       addressLine1: "Bizibox SA, 3 rue du Fossé",
-      addressLine2: "L-4123 Esch-sur-Alzette, Luxembourg",
+      addressLine2: "L-4123 Esch-sur-Alzette, Luxemburg",
       phone: "+33 7 70 46 94 51",
       email: "contact@bizibox.eu",
     },

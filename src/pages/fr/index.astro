@@ -15,36 +15,51 @@ import Footer from "../../components/Footer.astro";
 
 // Import French home page content
 import { homePageFr } from "../../content/home.fr";
+import {
+  getLocalBusinessSchema,
+  getFAQPageSchema,
+  getServicesSchema,
+  getWebSiteSchema,
+  getBreadcrumbListSchema,
+} from "../../content/schemas";
 
 // Destructure content for the French home page
 const { meta, hero, statistics, services, about, testimonials, contact, faq, footer } = homePageFr;
 
-// JSON-LD schema for the organization (to be refined later)
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Bizibox",
-  url: Astro.site,
-  logo: `${Astro.site}/assets/logo-bizibox.png`,
-  address: {
-    "@type": "PostalAddress",
-    addressCountry: "LU",
-  },
-};
+// JSON-LD schemas for comprehensive structured data optimization
+const localBusinessSchema = getLocalBusinessSchema(Astro.site);
+const faqPageSchema = getFAQPageSchema(Astro.site, faq.items || []);
+const servicesSchema = getServicesSchema(Astro.site, services.items || []);
+const webSiteSchema = getWebSiteSchema(Astro.site, "Bizibox - Cybersécurité");
+const breadcrumbSchema = getBreadcrumbListSchema(Astro.site, [{ name: "Accueil", url: "/fr" }]);
+
+// Combine all schemas into an array for injection
+const combinedSchemas = [
+  localBusinessSchema,
+  faqPageSchema,
+  servicesSchema,
+  webSiteSchema,
+  breadcrumbSchema,
+];
 ---
 
 <BaseLayout title={meta.title} description={meta.description} themeColor="#000b0f">
-  <!-- On-page SEO meta tags -->
+  <!-- On-page SEO meta tags with comprehensive JSON-LD schemas -->
   <Seo
     slot="head"
     title={meta.title}
     description={meta.description}
-    image="/assets/og/bizibox-og-fr.png"
+    image="/assets/og/bizibox-og-fr.jpg"
     type="website"
     siteName="Bizibox"
-    twitterSite="@bizibox"
-    schema={organizationSchema}
   />
+
+  <!-- Multiple JSON-LD schemas for rich results eligibility -->
+  {
+    combinedSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+    ))
+  }
 
   <!-- Skip link to main content (accessibility) -->
   <SkipLink />
@@ -59,7 +74,7 @@ const organizationSchema = {
     <!-- Certifications section -->
     <Certifications />
 
-    <!-- Services section grid -->
+    <!-- Services section grid with microdata markup -->
     <Services content={services} />
 
     <!-- About section -->
@@ -68,13 +83,13 @@ const organizationSchema = {
     <!-- Statistics section -->
     <Statistics content={statistics} />
 
-    <!-- Testimonials section with carousel -->
+    <!-- Testimonials section with carousel and Review microdata -->
     <Testimonials content={testimonials} />
 
     <!-- Contact section with CTA -->
     <Contact content={contact} />
 
-    <!-- FAQ section -->
+    <!-- FAQ section with FAQPage microdata -->
     <Faq content={faq} />
   </main>
 

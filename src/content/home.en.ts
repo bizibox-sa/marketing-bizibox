@@ -467,6 +467,13 @@ export const homePageEn = {
       },
     ],
   },
+  notFound: {
+    title: "Page not found",
+    heading: "Oops! Page not found",
+    description: "The page you are looking for does not exist or has been moved.",
+    message: "You can return to the home page or use the menu to navigate.",
+    ctaText: "Back to home",
+  },
   footer: {
     footerLabel: "Footer",
     footerBottomLabel: "Footer bottom",

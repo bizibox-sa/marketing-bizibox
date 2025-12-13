@@ -24,7 +24,11 @@ const { content } = Astro.props;
 
 <Section as="section" class="bg-slate-50" id="faq" containerClass="py-16 sm:py-32">
   <!-- Grid -->
-  <div class="grid gap-x-24 gap-y-16 px-2 lg:grid-cols-5">
+  <div
+    class="grid gap-x-24 gap-y-16 px-2 lg:grid-cols-5"
+    itemscope
+    itemtype="https://schema.org/FAQPage"
+  >
     <div class="lg:col-span-2">
       <div class="text-center lg:text-left">
         <p
@@ -75,13 +79,16 @@ const { content } = Astro.props;
             <div
               class={`hs-accordion ${index === 0 ? "active" : ""} pb-3 not-first:pt-6`}
               id={`hs-faq-heading-${index}`}
+              itemprop="mainEntity"
+              itemscope
+              itemtype="https://schema.org/Question"
             >
               <button
                 class="hs-accordion-toggle group inline-flex w-full items-center justify-between gap-x-3 rounded-lg pb-3 text-start text-lg font-semibold text-gray-800 transition hover:text-teal-700 focus:text-teal-700 focus:outline-hidden sm:text-2xl"
                 aria-expanded={index === 0 ? "true" : "false"}
                 aria-controls={`hs-faq-collapse-${index}`}
               >
-                {item.question}
+                <span itemprop="name">{item.question}</span>
                 <svg
                   class="hs-accordion-active:hidden block size-5 shrink-0 text-gray-600 group-hover:text-gray-500"
                   xmlns="http://www.w3.org/2000/svg"
@@ -116,8 +123,13 @@ const { content } = Astro.props;
                 class={`hs-accordion-content ${index === 0 ? "" : "hidden"} w-full overflow-hidden transition-[height] duration-300`}
                 role="region"
                 aria-labelledby={`hs-faq-heading-${index}`}
+                itemprop="acceptedAnswer"
+                itemscope
+                itemtype="https://schema.org/Answer"
               >
-                <p class="text-gray-600">{item.answer}</p>
+                <p class="text-gray-600" itemprop="text">
+                  {item.answer}
+                </p>
               </div>
             </div>
           ))
