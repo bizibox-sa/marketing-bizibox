@@ -27,17 +27,17 @@ export const getLocalBusinessSchema = (siteUrl: URL | undefined) => ({
   // Physical address for local business rich results
   address: {
     "@type": "PostalAddress",
-    streetAddress: "3 rue du Fossé",
+    streetAddress: "58 avenue de la gare",
     addressLocality: "Esch-sur-Alzette",
-    postalCode: "L-4123",
+    postalCode: "L-4130",
     addressCountry: "LU",
   },
 
   // Geographic coordinates for local search optimization
   geo: {
     "@type": "GeoCoordinates",
-    latitude: "49.4958",
-    longitude: "5.9806",
+    latitude: "49.49601649276158",
+    longitude: "5.982095913335705",
   },
 
   // Service area coverage

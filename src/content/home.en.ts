@@ -35,12 +35,12 @@ export const homePageEn = {
     },
   },
   hero: {
-    tagline: "Bizibox: at your service for 5 years",
+    tagline: "Bizibox: 5 years defending businesses from cyberattacks",
     headline: "Big technologies for small businesses",
     intro:
-      "Benefit from 24/7 monitoring, regular audits, and rapid incident response to ensure the security of your data and regulatory compliance.",
+      "Hackers don't discriminate based on size. Why should your security? We build fortresses that protect your data, 24/7.",
     form: {
-      headline: "Make an appointment",
+      headline: "Are you concerned about your safety?",
       intro: "Get an assessment of your security level",
       lastName: "Last name",
       firstName: "First name",
@@ -71,25 +71,24 @@ export const homePageEn = {
       ],
       securityLevelHelp: "Have you already implemented cybersecurity measures in your company?",
       consentText: "I agree that my data may be used to be contacted.",
-      submitLabel: "Send my request",
+      submitLabel: "I get my assessment",
     },
     clients: {
-      taglineNumber: "1,000",
+      taglineNumber: "100",
       taglinePlus: "+",
       taglineLabel: "people and businesses trust Bizibox",
     },
   },
   statistics: {
-    headline: "Our services in numbers",
-    subline:
-      "The proof of our expertise in cybersecurity and our commitment to our clients lies in the results we achieve.",
+    headline: "BiziBox by the numbers",
+    subline: "Our actions produce measurable results. Here we present the most concrete data.",
     items: [
       {
         value: "24/7",
         label: "Continuous monitoring",
       },
       {
-        value: "500+",
+        value: "100+",
         label: "Audits completed",
       },
       {
@@ -105,44 +104,44 @@ export const homePageEn = {
   },
   services: {
     tagline: "Areas of expertise",
-    headline: "Our cybersecurity services",
-    subline: "Comprehensive services to protect your business against digital threats.",
+    headline: "How we keep your business data safe",
+    subline:
+      "Audit, cybersecurity, cloud solutions, GDPR compliance, and disaster recovery plans... We cover all aspects of security.",
     cta: "Choose security",
     items: [
       {
         icon: '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon size-6 sm:size-8"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19 18a3.5 3.5 0 0 0 0 -7h-1c.397 -1.768 -.285 -3.593 -1.788 -4.787c-1.503 -1.193 -3.6 -1.575 -5.5 -1s-3.315 2.019 -3.712 3.787c-2.199 -.088 -4.155 1.326 -4.666 3.373c-.512 2.047 .564 4.154 2.566 5.027" /><path d="M8 15m0 1a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1v3a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1z" /><path d="M10 15v-2a2 2 0 1 1 4 0v2" /></svg>',
-        title: "Security audit",
+        title: "Security Audit & Pentesting",
         description:
-          "Evaluate the security of your systems and identify potential vulnerabilities.",
-      },
-      {
-        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon size-6 sm:size-8"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13 3v4a.997 .997 0 0 0 1 1h4" /><path d="M11 21h-5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v3.5" /><path d="M8 9h1" /><path d="M8 12.994l3 0" /><path d="M8 16.997l2 0" /><path d="M21 15.994c0 4 -2.5 6 -3.5 6s-3.5 -2 -3.5 -6c1 0 2.5 -.5 3.5 -1.5c1 1 2.5 1.5 3.5 1.5" /></svg>',
-        title: "24/7 Monitoring",
-        description:
-          "Continuously monitor your infrastructures to detect and prevent cyberattacks.",
-      },
-      {
-        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon size-6 sm:size-8"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3" /><path d="M12 11m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12l0 2.5" /></svg>',
-        title: "Incident response",
-        description: "Respond quickly to cyberattacks to minimize the impact on your business.",
+          "Comprehensive infrastructure assessment to identify vulnerabilities and enhance overall security",
       },
       {
         icon: '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon size-6 sm:size-8"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18.9 7a8 8 0 0 1 1.1 5v1a6 6 0 0 0 .8 3" /><path d="M8 11a4 4 0 0 1 8 0v1a10 10 0 0 0 2 6" /><path d="M12 11v2a14 14 0 0 0 2.5 8" /><path d="M8 15a18 18 0 0 0 1.8 6" /><path d="M4.9 19a22 22 0 0 1 -.9 -7v-1a8 8 0 0 1 12 -6.95" /></svg>',
-        title: "Regulatory compliance",
-        description: "Ensure your business complies with cybersecurity standards and regulations.",
+        title: "Comply with regulations (NIS, GDPR)",
+        description: "Support in complying with legal obligations and industry standards",
+      },
+      {
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon size-6 sm:size-8"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12h3m12 0h3" /><path d="M12 3v3m0 12v3" /><path d="M7.8 7.8l-2.2 -2.2m12.8 12.8l-2.2 -2.2m-8.4 0l-2.2 2.2m12.8 -12.8l-2.2 2.2" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg>',
+        title: "Network & Infrastructure Modernization",
+        description:
+          "Advanced solutions including microsegmentation, SDN, and next-generation firewalls (NGFW)",
       },
       {
         icon: '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon size-6 sm:size-8"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2" /><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0" /><path d="M8 11v-4a4 4 0 1 1 8 0v4" /><path d="M20 21l2 -2l-2 -2" /><path d="M17 17l-2 2l2 2" /></svg>',
-        title: "Training and awareness",
+        title: "Identity & Access Management",
         description:
-          "Raise awareness among your teams about cybersecurity best practices to reduce risks related to human errors.",
+          "Implementation of firewalls, NAC, IAM/PAM to protect and manage user identities and access",
       },
-
       {
-        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon size-6 sm:size-8"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path stroke="none" d="M0 0h24v24H0z" /><path d="M8 13v.01" /><path d="M12 17v.01" /><path d="M12 12v.01" /><path d="M16 14v.01" /><path d="M11 8v.01" /><path d="M13.148 3.476l2.667 1.104a4 4 0 0 0 4.656 6.14l.053 .132a3 3 0 0 1 0 2.296q -.745 1.18 -1.024 1.852q -.283 .684 -.66 2.216a3 3 0 0 1 -1.624 1.623q -1.572 .394 -2.216 .661q -.712 .295 -1.852 1.024a3 3 0 0 1 -2.296 0q -1.203 -.754 -1.852 -1.024q -.707 -.292 -2.216 -.66a3 3 0 0 1 -1.623 -1.624q -.397 -1.577 -.661 -2.216q -.298 -.718 -1.024 -1.852a3 3 0 0 1 0 -2.296q .719 -1.116 1.024 -1.852q .257 -.62 .66 -2.216a3 3 0 0 1 1.624 -1.623q 1.547 -.384 2.216 -.661q .687 -.285 1.852 -1.024a3 3 0 0 1 2.296 0" /></svg>',
-        title: "Support and maintenance",
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon size-6 sm:size-8"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3" /><path d="M12 11m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12l0 2.5" /></svg>',
+        title: "24-hour monitoring and supervision",
         description:
-          "Benefit from responsive technical support and regular maintenance to ensure the availability and security of your systems.",
+          "Continuous monitoring of the network and systems to detect and prevent any incidents",
+      },
+      {
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon size-6 sm:size-8"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M22 9l-10 -4l-10 4l10 4l10 -4v6" /><path d="M6 10.6v5.4a6 3 0 0 0 12 0v-5.4" /></svg>',
+        title: "Training and Awareness",
+        description: "Awareness programs on best practices and cyber threats for all staff",
       },
     ],
   },
@@ -287,7 +286,7 @@ export const homePageEn = {
         content: [
           "Bizibox SA",
           "Legal form: Public Limited Company (SA)",
-          "Registered office: 3 rue du Fossé, L-4123 Esch-sur-Alzette, Luxembourg",
+          "Registered office: 58 avenue de la gare, L-4130 Esch-sur-Alzette, Luxembourg",
           "SIRET number: 89505809700018",
           "VAT number: FR30895058097",
           "Email address: contact@bizibox.eu",
@@ -343,7 +342,7 @@ export const homePageEn = {
         heading: "Data Controller",
         content: [
           "Bizibox SA",
-          "3 rue du Fossé, L-4123 Esch-sur-Alzette, Luxembourg",
+          "58 avenue de la gare, L-4130 Esch-sur-Alzette, Luxembourg",
           "SIRET: 89505809700018",
           "VAT: FR30895058097",
           "Email: contact@bizibox.eu",
@@ -478,16 +477,16 @@ export const homePageEn = {
     footerLabel: "Footer",
     footerBottomLabel: "Footer bottom",
     brandCopy:
-      "Your trusted cybersecurity partner for businesses in Luxembourg and the French Grand Est region.",
-    tagList: ["Cybersecurity", "Audit", "Luxembourg · Grand Est"],
+      "Digital bodyguards for businesses. Choose an environment that is safe from threats.",
+    tagList: ["5 years of experience", "Luxembourg · Grand Est"],
     navLabel: "Navigation",
     legalLabel: "Legal notices",
     socialLabel: "Social networks",
     contactLabel: "Contact us",
     copyrightLabel: "Bizibox S.A. · All rights reserved.",
     contactList: {
-      addressLine1: "Bizibox SA, 3 rue du Fossé",
-      addressLine2: "L-4123 Esch-sur-Alzette, Luxembourg",
+      addressLine1: "Bizibox SA, 58 avenue de la gare",
+      addressLine2: "L-4130 Esch-sur-Alzette, Luxembourg",
       phone: "+33 7 70 46 94 51",
       email: "contact@bizibox.eu",
     },

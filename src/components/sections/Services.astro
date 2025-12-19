@@ -37,7 +37,10 @@ const { content } = Astro.props;
     >
       {content.tagline}
     </p>
-    <h2 slot="heading" class="mb-6 text-center text-4xl font-bold text-gray-800 sm:text-5xl">
+    <h2
+      slot="heading"
+      class="mx-auto mb-6 max-w-3xl text-center text-4xl font-bold text-gray-800 sm:text-5xl sm:leading-16"
+    >
       {content.headline}
     </h2>
     <p class="mx-auto max-w-2xl text-center text-lg text-gray-600">
@@ -48,7 +51,7 @@ const { content } = Astro.props;
     {
       content.items?.map((item, index) => (
         <article
-          class={`flex flex-col gap-4 rounded-xl border border-slate-200 bg-white p-6 text-center ${index >= 4 ? "hidden md:flex" : ""}`}
+          class="flex flex-col gap-4 rounded-xl border border-slate-200 bg-white p-6 text-center"
           itemprop="itemListElement"
           itemscope
           itemtype="https://schema.org/Service"
@@ -71,6 +74,22 @@ const { content } = Astro.props;
     }
   </div>
   <div class="mt-8 text-center sm:mt-16">
-    <Cta href="#hero" variant="primary" size="lg">{content.cta}</Cta>
+    <Cta href="#hero" variant="primary" size="lg">
+      {content.cta}
+      <svg
+        slot="icon-right"
+        xmlns="http://www.w3.org/2000/svg"
+        width="1em"
+        height="1em"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        class="ml-1 size-6"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path
+          d="M11.998 2l.118 .007l.059 .008l.061 .013l.111 .034a.993 .993 0 0 1 .217 .112l.104 .082l.255 .218a11 11 0 0 0 7.189 2.537l.342 -.01a1 1 0 0 1 1.005 .717a13 13 0 0 1 -9.208 16.25a1 1 0 0 1 -.502 0a13 13 0 0 1 -9.209 -16.25a1 1 0 0 1 1.005 -.717a11 11 0 0 0 7.531 -2.527l.263 -.225l.096 -.075a.993 .993 0 0 1 .217 -.112l.112 -.034a.97 .97 0 0 1 .119 -.021l.115 -.007zm.002 7a2 2 0 0 0 -1.995 1.85l-.005 .15l.005 .15a2 2 0 0 0 .995 1.581v1.769l.007 .117a1 1 0 0 0 1.993 -.117l.001 -1.768a2 2 0 0 0 -1.001 -3.732z"
+        ></path>
+      </svg>
+    </Cta>
   </div>
 </Section>

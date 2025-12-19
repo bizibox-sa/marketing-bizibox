@@ -96,9 +96,9 @@ const { content } = Astro.props;
 
     <!-- Clients Section -->
     <div
-      class="mt-6 mb-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 py-3 text-sm text-gray-300 after:ms-6 after:flex-1 sm:justify-start sm:after:border-t sm:after:border-gray-50/30 md:mt-12"
+      class="mt-6 mb-4 flex flex-wrap items-center justify-center gap-x-2 gap-y-1.5 py-3 text-sm text-gray-300 after:ms-6 after:flex-1 sm:justify-start sm:after:border-t sm:after:border-gray-50/30 md:mt-12"
     >
-      <span class="inline-flex items-center gap-x-1.5 whitespace-nowrap"
+      <span class="inline-flex items-center whitespace-nowrap"
         ><span
           class="bg-linear-to-r from-cyan-600 to-teal-500 bg-clip-text font-semibold text-transparent"
           >{content.clients.taglineNumber}</span
@@ -112,20 +112,45 @@ const { content } = Astro.props;
 
     <!-- Clients -->
     <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 lg:justify-start lg:gap-x-12">
-      <Image src={socomLogo} alt="Socom" class="h-auto w-[200px] opacity-60 grayscale" priority />
+      <Image
+        src={socomLogo}
+        alt="Socom"
+        class="h-auto w-[200px] opacity-60 grayscale"
+        loading="lazy"
+        decoding="async"
+        fetchpriority="auto"
+      />
       <Image
         src={prefaluxLogo}
         alt="Prefalux"
         class="h-auto w-[200px] opacity-60 grayscale"
-        priority
+        loading="lazy"
+        decoding="async"
+        fetchpriority="auto"
       />
-      <Image src={sesLogo} alt="SES" class="h-auto w-[200px] opacity-60 grayscale" priority />
-      <Image src={cteamLogo} alt="C-Team" class="h-auto w-[200px] opacity-60 grayscale" priority />
+      <Image
+        src={sesLogo}
+        alt="SES"
+        class="h-auto w-[200px] opacity-60 grayscale"
+        loading="lazy"
+        decoding="async"
+        fetchpriority="auto"
+      />
+      <Image
+        src={cteamLogo}
+        alt="C-Team"
+        class="h-auto w-[200px] opacity-60 grayscale"
+        loading="lazy"
+        decoding="async"
+        fetchpriority="auto"
+      />
       <Image
         src={unicreditLogo}
         alt="Unicredit"
         class="h-auto w-[200px] opacity-60 grayscale"
-        priority
+        loading="lazy"
+        decoding="async"
+        fetchpriority="auto"
       />
     </div>
     <!-- End Clients -->
