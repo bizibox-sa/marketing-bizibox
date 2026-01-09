@@ -119,10 +119,7 @@ export const getLocalBusinessSchema = (siteUrl: URL | undefined) => ({
  * FAQPage Schema - Enables FAQ rich results in Google Search
  * Displays questions and answers directly in search results (25-82% CTR improvement)
  */
-export const getFAQPageSchema = (
-  siteUrl: URL | undefined,
-  faqItems: { question: string; answer: string }[]
-) => ({
+export const getFAQPageSchema = (faqItems: { question: string; answer: string }[]) => ({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: faqItems.map((item) => ({

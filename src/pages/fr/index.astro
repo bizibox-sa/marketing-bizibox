@@ -8,7 +8,6 @@ import Certifications from "../../components/sections/Certifications.astro";
 import Statistics from "../../components/sections/Statistics.astro";
 import Services from "../../components/sections/Services.astro";
 import About from "../../components/sections/About.astro";
-import Testimonials from "../../components/sections/Testimonials.astro";
 import Contact from "../../components/sections/Contact.astro";
 import Faq from "../../components/sections/Faq.astro";
 import Footer from "../../components/Footer.astro";
@@ -24,11 +23,11 @@ import {
 } from "../../content/schemas";
 
 // Destructure content for the French home page
-const { meta, hero, statistics, services, about, testimonials, contact, faq, footer } = homePageFr;
+const { meta, hero, statistics, services, about, contact, faq, footer } = homePageFr;
 
 // JSON-LD schemas for comprehensive structured data optimization
 const localBusinessSchema = getLocalBusinessSchema(Astro.site);
-const faqPageSchema = getFAQPageSchema(Astro.site, faq.items || []);
+const faqPageSchema = getFAQPageSchema(faq.items || []);
 const servicesSchema = getServicesSchema(Astro.site, services.items || []);
 const webSiteSchema = getWebSiteSchema(Astro.site, "Bizibox - Cybersécurité");
 const breadcrumbSchema = getBreadcrumbListSchema(Astro.site, [{ name: "Accueil", url: "/fr" }]);
@@ -57,7 +56,7 @@ const combinedSchemas = [
   <!-- Multiple JSON-LD schemas for rich results eligibility -->
   {
     combinedSchemas.map((schema) => (
-      <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+      <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} slot="head" />
     ))
   }
 
@@ -84,7 +83,6 @@ const combinedSchemas = [
     <Statistics content={statistics} />
 
     <!-- Testimonials section with carousel and Review microdata -->
-    <Testimonials content={testimonials} />
 
     <!-- Contact section with CTA -->
     <Contact content={contact} />

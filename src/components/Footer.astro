@@ -169,13 +169,19 @@ const currentYear = new Date().getFullYear();
           {
             content.legalList?.map((item) => (
               <li>
-                <a
-                  href={buildHref(item.href)}
-                  class="text-gray-400 hover:text-white hover:underline"
-                  aria-label={item.ariaLabel}
-                >
-                  {item.legalLabel}
-                </a>
+                {item.href === "/cookies" ? (
+                  <span class="cursor-not-allowed text-gray-400" aria-label={item.ariaLabel}>
+                    {item.legalLabel}
+                  </span>
+                ) : (
+                  <a
+                    href={buildHref(item.href)}
+                    class="text-gray-400 hover:text-white hover:underline"
+                    aria-label={item.ariaLabel}
+                  >
+                    {item.legalLabel}
+                  </a>
+                )}
               </li>
             ))
           }

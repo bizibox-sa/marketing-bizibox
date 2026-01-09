@@ -3,7 +3,7 @@ export const homePageDe = {
     title:
       "Bizibox - Cybersicherheit für Unternehmen in Luxemburg und der französischen Region Grand Est",
     description:
-      "Schützen Sie Ihre Systeme, Ihre Daten und Ihre Kunden mit den Cybersicherheitsdiensten von Bizibox: Audits, Überwachung, Reaktion auf Vorfälle und regulatorische Compliance.",
+      "Schützen Sie Ihre Systeme, Ihre Daten und Ihre Kunden mit den Cybersicherheitsdiensten von Bizibox: Sicherheitsaudit, Pentesting, NIS-Konformität, Netzwerksicherheit, Identitätsmanagement und 24/7-Überwachung.",
   },
   ui: {
     languageSwitcher: {
@@ -110,7 +110,7 @@ export const homePageDe = {
     tagline: "Fachgebiete",
     headline: "Wie wir Ihre Unternehmensdaten schützen",
     subline:
-      "Audit, Cybersicherheit, Cloud-Lösungen, DSGVO-Konformität und Notfallwiederherstellungsplan... Wir decken alle Aspekte der Sicherheit ab.",
+      "Audit & Pentesting, NIS/DSGVO-Konformität, Netzwerkmodernisierung, Identitätsverwaltung, 24/7-Überwachung und Schulung... Wir decken alle Aspekte der Sicherheit ab.",
     cta: "Ich wähle Sicherheit",
     items: [
       {
@@ -139,9 +139,9 @@ export const homePageDe = {
       },
       {
         icon: '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon size-6 sm:size-8"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3" /><path d="M12 11m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12l0 2.5" /></svg>',
-        title: "Überwachung und Kontrolle rund um die Uhr",
+        title: "Monitoring & Supervision",
         description:
-          "Kontinuierliche Überwachung des Netzwerks und der Systeme zur Erkennung und Verhinderung von Vorfällen",
+          "Kontinuierliche 24/7-Überwachung des Netzwerks und der Systeme zur Erkennung und Verhinderung von Vorfällen",
       },
       {
         icon: '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon size-6 sm:size-8"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M22 9l-10 -4l-10 4l10 4l10 -4v6" /><path d="M6 10.6v5.4a6 3 0 0 0 12 0v-5.4" /></svg>',
@@ -152,60 +152,67 @@ export const homePageDe = {
     ],
   },
   about: {
-    tagline1: "Wer sind wir?",
-    headline1: "Ihr vertrauenswürdiger Partner für Cybersicherheit",
+    tagline1: "Wie arbeiten wir?",
+    headline1: "Unsere Arbeitsweise",
     subline1:
-      "Bei Bizibox sind wir dem Schutz von Unternehmen vor digitalen Bedrohungen verpflichtet. Unser Team von Cybersicherheitsexperten arbeitet unermüdlich daran, die Sicherheit Ihrer Systeme, Daten und Kunden zu gewährleisten.",
+      "Wir erstellen eine Übersicht über Ihr Unternehmen, um potenzielle Schwachstellen aufzudecken, die Hacker ausnutzen könnten, ohne dabei Daten zu verändern. Dabei handelt es sich um unser Sicherheitsaudit.",
     claims1: [
       {
-        keyword: "Datensicherheit: ",
-        detail: "Ihre Daten sind durch fortschrittliche Sicherheitsprotokolle geschützt.",
-      },
-      {
-        keyword: "Regelmäßige Audits: ",
-        detail: "Regelmäßige Audits zur Identifizierung und Behebung von Schwachstellen.",
-      },
-      {
-        keyword: "Engagement: ",
+        keyword: "Sicherheitsaudit: ",
         detail:
-          "Zuverlässige und effektive Cybersicherheitslösungen, die auf die spezifischen Bedürfnisse jedes Kunden zugeschnitten sind.",
+          "In dieser Phase setzen wir Sonden ein, die Ihre IT-Infrastruktur eingehend analysieren. Anschließend erstellen wir einen technischen Bericht.",
+      },
+      {
+        keyword: "Aufzeigen der Schwachstellen: ",
+        detail:
+          "Wir übersetzen Ihnen den technischen Bericht des Audits, um Ihnen die Gefahren aufzuzeigen, denen Sie ausgesetzt sind.",
+      },
+      {
+        keyword: "Planung und Verteidigung: ",
+        detail:
+          "Sie erhalten einen Aktionsplan, um die Schwachstellen gründlich zu beheben. Nach Ihrer Bestätigung richten wir Ihre neuen Abwehrmaßnahmen ein.",
       },
     ],
-    tagline2: "Unsere Mission",
-    headline2: "Schützen, was am wichtigsten ist",
+    tagline2: "Warum sollten Sie uns vertrauen?",
+    headline2: "5 Jahre Erfahrung im Bereich Cybersicherheit",
     subline2:
-      "Wir verstehen die einzigartigen Herausforderungen, denen Unternehmen in der heutigen digitalen Landschaft gegenüberstehen. Unsere Mission ist es, qualitativ hochwertige Cybersicherheitsdienste bereitzustellen, die es unseren Kunden ermöglichen, sich mit Vertrauen auf ihr Wachstum zu konzentrieren.",
+      "Hacker machen nicht vor großen Konzernen Halt. Daten sind teuer, und kleinere Unternehmen oder Gemeinden sind für sie leichter anzugreifen. Wir gehören zu den wenigen, die die Erfahrungen und Methoden großer Konzerne auf kleinere Unternehmen übertragen.",
     claims2: [
       {
-        keyword: "Technische Expertise: ",
-        detail: "Ein Team qualifizierter Cybersicherheitsexperten zu Ihren Diensten.",
+        keyword: "Institutionelle Kunden: ",
+        detail:
+          "Wir haben die Netzwerksicherheit und -strukturierung für mehrere Kunden im öffentlichen Sektor sowohl in Luxemburg als auch in Frankreich gewährleistet.",
       },
       {
-        keyword: "Schnelle Reaktion auf Vorfälle: ",
-        detail: "Schnelle Intervention zur Minimierung der Auswirkungen von Cyberangriffen.",
+        keyword: "Bewährte Methodik: ",
+        detail:
+          "Wir wenden die Sicherheitsstandards großer Unternehmen an und passen sie gleichzeitig an Ihre Infrastruktur an, um einen optimalen Schutz zu gewährleisten.",
       },
       {
-        keyword: "Schulung und Sensibilisierung: ",
-        detail: "Schulungsprogramme zur Stärkung der Wachsamkeit Ihrer Teams.",
+        keyword: "Maßgeschneiderte Unterstützung: ",
+        detail:
+          "Wir reagieren schnell auf Vorfälle und sorgen für eine regelmäßige Überwachung, um Ihr Sicherheitsniveau angesichts der sich ständig weiterentwickelnden Bedrohungen aufrechtzuerhalten.",
       },
     ],
-    tagline3: "Warum uns wählen?",
-    headline3: "Exzellenz in der Cybersicherheit",
+    tagline3: "Was bekommen Sie dafür?",
+    headline3: "Lieferungen und Konformitätsnachweise",
     subline3:
-      "Bei Bizibox verpflichten wir uns, erstklassige Cybersicherheitsdienste anzubieten. Unser proaktiver Ansatz, unsere technische Expertise und unser Engagement für Kundenzufriedenheit machen uns zum idealen Partner für den Schutz Ihres Unternehmens vor digitalen Bedrohungen.",
+      "Ein Sicherheitsaudit ist nur dann sinnvoll, wenn es zu klaren Maßnahmen führt. Wir liefern Ihnen einen detaillierten Bericht mit Empfehlungen, die nach ihrer Kritikalität und ihren Auswirkungen auf Ihre Tätigkeit priorisiert sind.",
     claims3: [
       {
-        keyword: "Maßgeschneiderte Lösungen: ",
+        keyword: "Vollständiger und verständlicher Bericht: ",
         detail:
-          "Dienstleistungen, die auf die spezifischen Bedürfnisse jedes Unternehmens zugeschnitten sind.",
+          "Sie erhalten eine detaillierte Analyse jeder entdeckten Schwachstelle mit Angabe des Risikoniveaus und der potenziellen Auswirkungen auf Ihr Unternehmen.",
       },
       {
-        keyword: "Fortschrittliche Technologien: ",
-        detail: "Einsatz der neuesten Technologien für optimalen Schutz.",
+        keyword: "Validierung und Korrekturtests: ",
+        detail:
+          "Nach der Umsetzung der Korrekturen führen wir Verifizierungstests durch, um sicherzustellen, dass die Schwachstellen tatsächlich beseitigt wurden.",
       },
       {
-        keyword: "Kontinuierlicher Support: ",
-        detail: "Reaktiver technischer Support und regelmäßige Wartung.",
+        keyword: "Einhaltung gesetzlicher Vorschriften: ",
+        detail:
+          "Unser Bericht hilft Ihnen dabei, die Einhaltung der DSGVO, NIS2 und anderer gesetzlicher Datenschutzbestimmungen nachzuweisen.",
       },
     ],
   },
@@ -303,7 +310,7 @@ export const homePageDe = {
       },
       {
         heading: "Verantwortlich für die Veröffentlichung",
-        content: ["Julien Renvoisé"],
+        content: ["Bertrand Petat."],
       },
       {
         heading: "Website-Hosting",
