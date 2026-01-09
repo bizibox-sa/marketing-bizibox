@@ -36,9 +36,9 @@ export const homePageEn = {
   },
   hero: {
     tagline: "Bizibox: 5 years defending businesses from cyberattacks",
-    headline: "Big technologies for small businesses",
+    headline: "Enterprise-grade cybersecurity for small businesses",
     intro:
-      "Hackers don't discriminate based on size. Why should your security? We build fortresses that protect your data, 24/7.",
+      "Hackers don't discriminate based on size. Why should your security be any different? We build fortresses that protect your data, 24/7.",
     form: {
       headline: "Are you concerned about your security?",
       intro: "Get an assessment of your security level",
@@ -71,7 +71,7 @@ export const homePageEn = {
       ],
       securityLevelHelp: "Have you already implemented cybersecurity measures in your company?",
       consentText: "I agree that my data may be used to be contacted.",
-      submitLabel: "I get my assessment",
+      submitLabel: "Get my assessment",
     },
     clients: {
       taglineNumber: "100",
@@ -80,7 +80,7 @@ export const homePageEn = {
     },
   },
   statistics: {
-    headline: "BiziBox by the numbers",
+    headline: "Bizibox by the numbers",
     subline: "Our actions produce measurable results. Here we present the most concrete data.",
     items: [
       {
@@ -159,7 +159,7 @@ export const homePageEn = {
       {
         keyword: "Exposure of vulnerabilities: ",
         detail:
-          "Exposure of vulnerabilities: we translate the technical audit report for you in order to explain the threats you face.",
+          "We translate the technical audit report for you in order to explain the threats you face.",
       },
       {
         keyword: "Planning and defense: ",

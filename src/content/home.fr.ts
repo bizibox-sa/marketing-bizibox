@@ -82,7 +82,7 @@ export const homePageFr = {
     },
   },
   statistics: {
-    headline: "BiziBox en chiffres",
+    headline: "Bizibox en chiffres",
     subline:
       "Nos actions produisent des résultats mesurables. Nous vous présentons ici les données les plus concrètes.",
     items: [
