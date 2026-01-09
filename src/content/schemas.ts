@@ -104,15 +104,6 @@ export const getLocalBusinessSchema = (siteUrl: URL | undefined) => ({
 
   // Price range indicator for services ($ = budget, $$ = moderate, $$$ = premium, $$$$ = luxury)
   priceRange: "$$-$$$",
-
-  // Aggregate rating from testimonials (5 reviews, all 5 stars)
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "5",
-    reviewCount: "5",
-    bestRating: "5",
-    worstRating: "1", // Changed from "5" - worst rating should be lowest possible
-  },
 });
 
 /**
