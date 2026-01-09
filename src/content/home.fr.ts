@@ -2,7 +2,7 @@ export const homePageFr = {
   meta: {
     title: "Bizibox - Cybersécurité pour les entreprises au Luxembourg et dans le Grand Est",
     description:
-      "Protégez vos systèmes, vos données et vos clients grâce aux services de cybersécurité Bizibox : audits, supervision, réponse à incident et conformité réglementaire.",
+      "Protégez vos systèmes, vos données et vos clients grâce aux services de cybersécurité Bizibox : audit de sécurité, pentesting, conformité NIS, sécurité réseau, gestion des identités et surveillance 24/7.",
   },
   ui: {
     languageSwitcher: {
@@ -109,7 +109,7 @@ export const homePageFr = {
     tagline: "Domaines d'expertise",
     headline: "Comment nous sécurisons vos données d'entreprise",
     subline:
-      "Audit, cybersécurité, solutions cloud, conformité RGPD et plan de reprise d'activité… Nous couvrons tous les aspects de la sécurité.",
+      "Audit & pentesting, conformité NIS/RGPD, modernisation réseau, gestion des identités, monitoring 24/7 et formation… Nous couvrons tous les aspects de la sécurité.",
     cta: "J'opte pour la sécurité",
     items: [
       {
@@ -151,59 +151,67 @@ export const homePageFr = {
     ],
   },
   about: {
-    tagline1: "Qui sommes-nous ?",
-    headline1: "Votre partenaire de confiance en cybersécurité",
+    tagline1: "Comment fonctionne-t-on ?",
+    headline1: "Notre façon de travailler",
     subline1:
-      "Chez Bizibox, nous sommes dédiés à la protection des entreprises contre les menaces numériques. Notre équipe d'experts en cybersécurité travaille sans relâche pour assurer la sécurité de vos systèmes, données et clients.",
+      "Nous nous occupons de cartographier votre entreprise, afin d'y découvrir, sans toucher aux données, les potentielles vulnérabilités que des hackers pourraient exploiter. Il s'agit de notre audit sécurité.",
     claims1: [
       {
-        keyword: "Sécurité des données : ",
-        detail: "Vos données sont protégées grâce à des protocoles de sécurité avancés.",
-      },
-      {
-        keyword: "Audits récurrents : ",
-        detail: "Des audits réguliers pour identifier et corriger les vulnérabilités.",
-      },
-      {
-        keyword: "Engagement : ",
+        keyword: "Audit sécurité : ",
         detail:
-          "Des solutions de cybersécurité fiables et efficaces, adaptées aux besoins spécifiques de chaque client.",
+          "durant cette étape, nous déployons des sondes qui vont analyser en profondeur votre infrastructure informatique. Puis nous produisons un rapport technique.",
+      },
+      {
+        keyword: "Exposition des failles : ",
+        detail:
+          "nous vous traduisons le rapport technique de l'audit afin de vous exposer les menaces auxquelles vous faites face.",
+      },
+      {
+        keyword: "Planification et défense : ",
+        detail:
+          "vous obtenez un plan d'action pour corriger les failles en profondeur. Après votre validation, nous mettons en place vos nouvelles défenses.",
       },
     ],
-    tagline2: "Notre mission",
-    headline2: "Protéger ce qui compte le plus",
+    tagline2: "Pourquoi nous faire confiance ?",
+    headline2: "5 ans d'expérience dans la cybersécurité",
     subline2:
-      "Nous comprenons les défis uniques auxquels les entreprises sont confrontées dans le paysage numérique actuel. Notre mission est de fournir des services de cybersécurité de haute qualité qui permettent à nos clients de se concentrer sur leur croissance en toute confiance.",
+      "Les hackers ne s'arrêtent pas aux grands groupes. La donnée est chère, et s'attaquer aux plus petites entreprises ou aux communes est plus facile pour eux. Nous faisons partie des seuls à adapter l'expérience et les méthodes des grands groupes aux plus petites entreprises.",
     claims2: [
       {
-        keyword: "Expertise technique : ",
-        detail: "Une équipe d'experts qualifiés en cybersécurité à votre service.",
+        keyword: "Clients institutionnels : ",
+        detail:
+          "nous avons assuré la sécurité et la structuration réseau de plusieurs clients dans le public, aussi bien au niveau du Luxembourg que de la France.",
       },
       {
-        keyword: "Réponse rapide aux incidents : ",
-        detail: "Intervention rapide pour minimiser les impacts des cyberattaques.",
+        keyword: "Méthodologie éprouvée : ",
+        detail:
+          "nous appliquons les standards de sécurité des grands comptes tout en les adaptant à votre infrastructure pour une protection optimale.",
       },
       {
-        keyword: "Formation et sensibilisation : ",
-        detail: "Des programmes de formation pour renforcer la vigilance de vos équipes.",
+        keyword: "Accompagnement sur mesure : ",
+        detail:
+          "nous intervenons rapidement en cas d'incident et assurons un suivi régulier pour maintenir votre niveau de sécurité face à l'évolution constante des menaces.",
       },
     ],
-    tagline3: "Pourquoi nous choisir ?",
-    headline3: "L'excellence en cybersécurité",
+    tagline3: "Ce que vous obtenez ?",
+    headline3: "Livrables et preuves de conformité",
     subline3:
-      "Chez Bizibox, nous nous engageons à offrir des services de cybersécurité de premier ordre. Notre approche proactive, notre expertise technique et notre engagement envers la satisfaction client font de nous le partenaire idéal pour protéger votre entreprise contre les menaces numériques.",
+      "Un audit de sécurité n'a de valeur que s'il débouche sur des actions claires. Nous vous livrons un rapport détaillé avec des recommandations priorisées selon leur criticité et leur impact sur votre activité.",
     claims3: [
       {
-        keyword: "Solutions personnalisées : ",
-        detail: "Des services adaptés aux besoins spécifiques de chaque entreprise.",
+        keyword: "Rapport complet et compréhensible : ",
+        detail:
+          "vous recevez une analyse détaillée de chaque vulnérabilité découverte, avec son niveau de risque et son impact potentiel sur votre entreprise.",
       },
       {
-        keyword: "Technologies avancées : ",
-        detail: "Utilisation des dernières technologies pour une protection optimale.",
+        keyword: "Validation et tests de correction : ",
+        detail:
+          "après la mise en œuvre des corrections, nous effectuons des tests de vérification pour confirmer que les vulnérabilités ont bien été éliminées.",
       },
       {
-        keyword: "Support continu : ",
-        detail: "Un support technique réactif et une maintenance régulière.",
+        keyword: "Conformité réglementaire : ",
+        detail:
+          "notre rapport vous aide à démontrer votre conformité aux exigences RGPD, NIS2 et autres obligations légales en matière de protection des données.",
       },
     ],
   },
@@ -301,7 +309,7 @@ export const homePageFr = {
       },
       {
         heading: "Directeur de la publication",
-        content: [""],
+        content: ["Bertrand Petat."],
       },
       {
         heading: "Hébergement du site",

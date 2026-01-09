@@ -68,7 +68,7 @@ const ogLocale = ogLocaleMap[localeCode] ?? localeCode;
 
 <!-- Optional JSON-LD structured data -->
 {schema && (
-  <script type="application/ld+json">
+  <script type="application/ld+json" is:inline>
     {JSON.stringify(schema)}
   </script>
 )}

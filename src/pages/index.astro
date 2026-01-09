@@ -1,6 +1,4 @@
 ---
-import { getRelativeLocaleUrl } from "astro:i18n";
-
 // Redirect to the default locale (French)
-return Astro.redirect(getRelativeLocaleUrl("fr", ""));
+return Astro.redirect("/fr");
 ---

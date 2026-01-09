@@ -2,7 +2,7 @@ export const homePageEn = {
   meta: {
     title: "Bizibox - Cybersecurity for Businesses in Luxembourg and the French Grand Est Region",
     description:
-      "Protect your systems, data, and customers with Bizibox's cybersecurity services: audits, monitoring, incident response, and regulatory compliance.",
+      "Protect your systems, data, and customers with Bizibox's cybersecurity services: security audit, pentesting, NIS compliance, network security, identity management, and 24/7 monitoring.",
   },
   ui: {
     languageSwitcher: {
@@ -40,7 +40,7 @@ export const homePageEn = {
     intro:
       "Hackers don't discriminate based on size. Why should your security? We build fortresses that protect your data, 24/7.",
     form: {
-      headline: "Are you concerned about your safety?",
+      headline: "Are you concerned about your security?",
       intro: "Get an assessment of your security level",
       lastName: "Last name",
       firstName: "First name",
@@ -106,7 +106,7 @@ export const homePageEn = {
     tagline: "Areas of expertise",
     headline: "How we keep your business data safe",
     subline:
-      "Audit, cybersecurity, cloud solutions, GDPR compliance, and disaster recovery plans... We cover all aspects of security.",
+      "Audit & pentesting, NIS/GDPR compliance, network modernization, identity management, 24/7 monitoring and training... We cover all aspects of security.",
     cta: "Choose security",
     items: [
       {
@@ -134,9 +134,9 @@ export const homePageEn = {
       },
       {
         icon: '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon size-6 sm:size-8"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3" /><path d="M12 11m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12l0 2.5" /></svg>',
-        title: "24-hour monitoring and supervision",
+        title: "Monitoring & Supervision",
         description:
-          "Continuous monitoring of the network and systems to detect and prevent any incidents",
+          "Continuous 24/7 monitoring of the network and systems to detect and prevent any incidents",
       },
       {
         icon: '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon size-6 sm:size-8"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M22 9l-10 -4l-10 4l10 4l10 -4v6" /><path d="M6 10.6v5.4a6 3 0 0 0 12 0v-5.4" /></svg>',
@@ -146,59 +146,67 @@ export const homePageEn = {
     ],
   },
   about: {
-    tagline1: "Who are we?",
-    headline1: "Your trusted partner in cybersecurity",
+    tagline1: "How do we operate?",
+    headline1: "Our approach to work",
     subline1:
-      "At Bizibox, we are dedicated to protecting businesses from digital threats. Our team of cybersecurity experts works tirelessly to ensure the security of your systems, data, and customers.",
+      "We map out your company to identify potential vulnerabilities that hackers could exploit, without touching any data. This is our security audit.",
     claims1: [
       {
-        keyword: "Data security: ",
-        detail: "Your data is protected with advanced security protocols.",
-      },
-      {
-        keyword: "Recurring audits: ",
-        detail: "Regular audits to identify and fix vulnerabilities.",
-      },
-      {
-        keyword: "Commitment: ",
+        keyword: "Security audit: ",
         detail:
-          "Reliable and effective cybersecurity solutions tailored to the specific needs of each client.",
+          "During this stage, we deploy probes that will thoroughly analyze your IT infrastructure. We then produce a technical report.",
+      },
+      {
+        keyword: "Exposure of vulnerabilities: ",
+        detail:
+          "Exposure of vulnerabilities: we translate the technical audit report for you in order to explain the threats you face.",
+      },
+      {
+        keyword: "Planning and defense: ",
+        detail:
+          "You receive an action plan to thoroughly correct vulnerabilities. After your approval, we implement your new defenses.",
       },
     ],
-    tagline2: "Our mission",
-    headline2: "Protecting what matters most",
+    tagline2: "Why trust us?",
+    headline2: "5 years of experience in cybersecurity",
     subline2:
-      "We understand the unique challenges businesses face in today's digital landscape. Our mission is to provide high-quality cybersecurity services that enable our clients to focus on their growth with confidence.",
+      "Hackers don't just target large corporations. Data is valuable, and attacking smaller businesses or municipalities is easier for them. We are one of the few companies that adapts the experience and methods of large corporations to smaller businesses.",
     claims2: [
       {
-        keyword: "Technical expertise: ",
-        detail: "A team of certified cybersecurity professionals at your service.",
+        keyword: "Institutional clients: ",
+        detail:
+          "We have provided network security and structuring for several clients in the public sector, both in Luxembourg and France.",
       },
       {
-        keyword: "Fast incident response: ",
-        detail: "Quick intervention to minimize the impact of cyberattacks.",
+        keyword: "Proven methodology: ",
+        detail:
+          "We apply the security standards of large accounts while adapting them to your infrastructure for optimal protection.",
       },
       {
-        keyword: "Training and awareness: ",
-        detail: "Training programs to enhance your team's vigilance.",
+        keyword: "Customized support: ",
+        detail:
+          "We respond quickly in the event of an incident and provide regular follow-up to maintain your level of security in the face of constantly evolving threats.",
       },
     ],
-    tagline3: "Why choose us?",
-    headline3: "Excellence in cybersecurity",
+    tagline3: "What do you get?",
+    headline3: "Deliverables and proof of compliance",
     subline3:
-      "At Bizibox, we are committed to providing top-notch cybersecurity services. Our proactive approach, technical expertise, and dedication to customer satisfaction make us the ideal partner to protect your business from digital threats.",
+      "A security audit is only valuable if it leads to clear actions. We provide you with a detailed report containing recommendations prioritized according to their criticality and impact on your business.",
     claims3: [
       {
-        keyword: "Customized solutions: ",
-        detail: "Services tailored to the specific needs of each business.",
+        keyword: "Comprehensive report: ",
+        detail:
+          "You receive a detailed analysis of each vulnerability discovered, including its risk level and potential impact on your business.",
       },
       {
-        keyword: "Advanced technologies: ",
-        detail: "Utilization of the latest technologies for optimal protection.",
+        keyword: "Validation and correction testing: ",
+        detail:
+          "After implementing corrections, we perform verification tests to confirm that vulnerabilities have been eliminated.",
       },
       {
-        keyword: "Continuous support: ",
-        detail: "Responsive technical support and regular maintenance.",
+        keyword: "Regulatory compliance: ",
+        detail:
+          "Our report helps you demonstrate your compliance with GDPR, NIS2, and other legal data protection requirements.",
       },
     ],
   },
@@ -295,7 +303,7 @@ export const homePageEn = {
       },
       {
         heading: "Publication Director",
-        content: ["Julien Renvoisé"],
+        content: ["Bertrand Petat."],
       },
       {
         heading: "Website Hosting",
