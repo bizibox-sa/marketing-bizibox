@@ -74,7 +74,7 @@ export const homePageDe = {
       securityLevelHelp:
         "Haben Sie bereits Cybersicherheitsmaßnahmen in Ihrem Unternehmen implementiert?",
       consentText: "Ich akzeptiere, dass meine Daten verwendet werden, um kontaktiert zu werden.",
-      submitLabel: "Ich erhalte meine Bilanz",
+      submitLabel: "Ich erhalte meinen Sicherheitscheck",
     },
     clients: {
       taglineNumber: "100",
@@ -83,7 +83,7 @@ export const homePageDe = {
     },
   },
   statistics: {
-    headline: "BiziBox in Zahlen",
+    headline: "Bizibox in Zahlen",
     subline:
       "Unsere Maßnahmen führen zu messbaren Ergebnissen. Hier präsentieren wir Ihnen die konkretesten Daten.",
     items: [
@@ -195,7 +195,7 @@ export const homePageDe = {
       },
     ],
     tagline3: "Was bekommen Sie dafür?",
-    headline3: "Lieferungen und Konformitätsnachweise",
+    headline3: "Ergebnisse und Compliance-Nachweise",
     subline3:
       "Ein Sicherheitsaudit ist nur dann sinnvoll, wenn es zu klaren Maßnahmen führt. Wir liefern Ihnen einen detaillierten Bericht mit Empfehlungen, die nach ihrer Kritikalität und ihren Auswirkungen auf Ihre Tätigkeit priorisiert sind.",
     claims3: [
@@ -325,7 +325,7 @@ export const homePageDe = {
       {
         heading: "Tätigkeit",
         content: [
-          "Diese Website präsentiert die von Bizibox SA angebotenen Cybersicherheitsdienste (Audits, Überwachung, Incident Response, Compliance usw.).",
+          "Diese Website präsentiert die von Bizibox SA angebotenen Cybersicherheitsdienste (Audits, Überwachung, Vorfallreaktion, Compliance usw.).",
         ],
       },
       {
