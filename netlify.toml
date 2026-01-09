@@ -1,32 +1,18 @@
-# Netlify configuration for Bizibox Landing Page
-
 [build]
-  # Build command
   command = "npm run build"
-  # Output directory (Astro default)
   publish = "dist"
 
-# Build environment variables
 [build.environment]
   NODE_VERSION = "20"
 
-# Netlify Forms configuration
-[forms]
-  # Enable form detection
-  forms = true
-
-# Headers for security and performance
 [[headers]]
   for = "/*"
   [headers.values]
-    # Security headers
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
-
-    # Cache control for static assets
-    Cache-Control = "public, max-age=0, must-revalidate"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
 
 [[headers]]
   for = "/_astro/*"
@@ -38,15 +24,23 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# Root redirect to French homepage (instant, server-side)
 [[redirects]]
   from = "/"
   to = "/fr/"
   status = 302
   force = true
 
-# 404 page
 [[redirects]]
-  from = "/*"
-  to = "/404.html"
-  status = 404
+  from = "/fr/success"
+  to = "/fr/success/"
+  status = 301
+
+[[redirects]]
+  from = "/en/success"
+  to = "/en/success/"
+  status = 301
+
+[[redirects]]
+  from = "/de/success"
+  to = "/de/success/"
+  status = 301
