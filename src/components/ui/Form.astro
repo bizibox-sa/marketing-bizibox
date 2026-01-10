@@ -38,8 +38,16 @@ const uiContentMap = {
   de: homePageDe.ui.form,
 };
 
-const locale = Astro.currentLocale || "fr";
-const t = uiContentMap[locale as keyof typeof uiContentMap] || uiContentMap.fr;
+// Prefer deriving locale from the URL path (more robust with routing/transitions)
+const segments = Astro.url.pathname.split("/").filter(Boolean);
+const urlLocale = segments[0];
+const locale = (
+  urlLocale === "fr" || urlLocale === "en" || urlLocale === "de"
+    ? urlLocale
+    : Astro.currentLocale || "fr"
+) as "fr" | "en" | "de";
+
+const t = uiContentMap[locale] || uiContentMap.fr;
 
 // Generate unique IDs for accessibility
 const formId = "contact-form";
@@ -51,18 +59,23 @@ const companySizeId = `${formId}-company-size`;
 const companyActivityId = `${formId}-company-activity`;
 const securityLevelId = `${formId}-security-level`;
 const consentId = `${formId}-consent`;
+
+// Netlify form name (single bucket + locale field)
+const netlifyFormName = "contact";
 ---
 
 <form
-  name="contact"
+  name={netlifyFormName}
   method="POST"
   data-netlify="true"
   netlify-honeypot="bot-field"
   action={`/${locale}/success/`}
+  data-astro-reload
   class="mx-auto max-w-2xl"
 >
   <!-- Hidden input for Netlify form name -->
-  <input type="hidden" name="form-name" value="contact" />
+  <input type="hidden" name="form-name" value={netlifyFormName} />
+  <input type="hidden" name="locale" value={locale} />
 
   <div class="ms-auto lg:mx-auto lg:me-0 lg:max-w-lg">
     <!-- Card -->
@@ -94,6 +107,7 @@ const consentId = `${formId}-consent`;
               name="first-name"
               required
               aria-required="true"
+              autocomplete="given-name"
               class="peer block w-full rounded-lg border-gray-600 bg-neutral-900/10 p-3 text-neutral-400 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 placeholder:text-transparent autofill:pt-6 autofill:pb-2 focus:border-teal-500 focus:pt-6 focus:pb-2 focus:ring-teal-600 disabled:pointer-events-none disabled:opacity-50 sm:p-4 sm:text-sm"
               placeholder={content.firstName}
             />
@@ -113,6 +127,7 @@ const consentId = `${formId}-consent`;
               name="last-name"
               required
               aria-required="true"
+              autocomplete="family-name"
               class="peer block w-full rounded-lg border-gray-600 bg-neutral-900/10 p-3 text-neutral-400 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 placeholder:text-transparent autofill:pt-6 autofill:pb-2 focus:border-teal-500 focus:pt-6 focus:pb-2 focus:ring-teal-600 disabled:pointer-events-none disabled:opacity-50 sm:p-4 sm:text-sm"
               placeholder={content.lastName}
             />
