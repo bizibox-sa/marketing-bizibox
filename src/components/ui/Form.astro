@@ -23,31 +23,28 @@ export interface HeroFormContent {
   submitLabel: string;
 }
 
-// Props interface for Hero form component
 export interface Props {
   content: HeroFormContent;
 }
 
-// Destructure content prop
 const { content } = Astro.props;
 
-// Get UI content based on locale
+// Locale (robuste) : on lit le 1er segment d’URL
+const supported = new Set(["fr", "en", "de"]);
+const segments = Astro.url.pathname.split("/").filter(Boolean);
+const locale = (supported.has(segments[0]) ? segments[0] : "fr") as "fr" | "en" | "de";
+
+// UI content based on locale
 const uiContentMap = {
   fr: homePageFr.ui.form,
   en: homePageEn.ui.form,
   de: homePageDe.ui.form,
-};
+} as const;
 
-// Prefer deriving locale from the URL path (more robust with routing/transitions)
-const segments = Astro.url.pathname.split("/").filter(Boolean);
-const urlLocale = segments[0];
-const locale = (
-  urlLocale === "fr" || urlLocale === "en" || urlLocale === "de"
-    ? urlLocale
-    : Astro.currentLocale || "fr"
-) as "fr" | "en" | "de";
+const t = uiContentMap[locale];
 
-const t = uiContentMap[locale] || uiContentMap.fr;
+// Important : nom UNIQUE par langue (reco Netlify)
+const formName = `contact-${locale}`;
 
 // Generate unique IDs for accessibility
 const formId = "contact-form";
@@ -59,37 +56,30 @@ const companySizeId = `${formId}-company-size`;
 const companyActivityId = `${formId}-company-activity`;
 const securityLevelId = `${formId}-security-level`;
 const consentId = `${formId}-consent`;
-
-// Netlify form name (single bucket + locale field)
-const netlifyFormName = "contact";
 ---
 
 <form
-  name={netlifyFormName}
+  name={formName}
   method="POST"
   data-netlify="true"
   netlify-honeypot="bot-field"
   action={`/${locale}/success/`}
-  data-astro-reload
   class="mx-auto max-w-2xl"
 >
   <!-- Hidden input for Netlify form name -->
-  <input type="hidden" name="form-name" value={netlifyFormName} />
-  <input type="hidden" name="locale" value={locale} />
+  <input type="hidden" name="form-name" value={formName} />
 
   <div class="ms-auto lg:mx-auto lg:me-0 lg:max-w-lg">
-    <!-- Card -->
     <div
       class="bg-opacity-50 flex flex-col rounded-2xl bg-white/5 bg-clip-padding px-4 py-6 shadow-lg backdrop-blur-sm backdrop-filter sm:p-7"
     >
-      <!-- Header -->
       <div class="text-center">
         <h2 class="mb-4 block text-2xl font-semibold text-white">{content.headline}</h2>
         <p class="mt-2 text-gray-300">{content.intro}</p>
       </div>
 
       <div class="mt-8">
-        <!-- Honeypot field (hidden from users) -->
+        <!-- Honeypot field -->
         <p class="hidden" aria-hidden="true">
           <label for="bot-field">
             {t.honeypotLabel}
@@ -97,16 +87,13 @@ const netlifyFormName = "contact";
           </label>
         </p>
 
-        <!-- Grid -->
         <div class="grid gap-4 sm:grid-cols-2">
-          <!-- First Name Input -->
           <div class="relative">
             <input
               type="text"
               id={firstNameId}
               name="first-name"
               required
-              aria-required="true"
               autocomplete="given-name"
               class="peer block w-full rounded-lg border-gray-600 bg-neutral-900/10 p-3 text-neutral-400 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 placeholder:text-transparent autofill:pt-6 autofill:pb-2 focus:border-teal-500 focus:pt-6 focus:pb-2 focus:ring-teal-600 disabled:pointer-events-none disabled:opacity-50 sm:p-4 sm:text-sm"
               placeholder={content.firstName}
@@ -119,14 +106,12 @@ const netlifyFormName = "contact";
             </label>
           </div>
 
-          <!-- Last Name Input -->
           <div class="relative">
             <input
               type="text"
               id={lastNameId}
               name="last-name"
               required
-              aria-required="true"
               autocomplete="family-name"
               class="peer block w-full rounded-lg border-gray-600 bg-neutral-900/10 p-3 text-neutral-400 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 placeholder:text-transparent autofill:pt-6 autofill:pb-2 focus:border-teal-500 focus:pt-6 focus:pb-2 focus:ring-teal-600 disabled:pointer-events-none disabled:opacity-50 sm:p-4 sm:text-sm"
               placeholder={content.lastName}
@@ -139,14 +124,12 @@ const netlifyFormName = "contact";
             </label>
           </div>
 
-          <!-- Email Input -->
           <div class="relative">
             <input
               type="email"
               id={emailId}
               name="email"
               required
-              aria-required="true"
               autocomplete="email"
               class="peer block w-full rounded-lg border-gray-600 bg-neutral-900/10 p-3 text-neutral-400 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 placeholder:text-transparent autofill:pt-6 autofill:pb-2 focus:border-teal-500 focus:pt-6 focus:pb-2 focus:ring-teal-600 disabled:pointer-events-none disabled:opacity-50 sm:p-4 sm:text-sm"
               placeholder={content.email}
@@ -159,14 +142,12 @@ const netlifyFormName = "contact";
             </label>
           </div>
 
-          <!-- Phone Input -->
           <div class="relative">
             <input
               type="tel"
               id={phoneId}
               name="phone"
               required
-              aria-required="true"
               autocomplete="tel"
               class="peer block w-full rounded-lg border-gray-600 bg-neutral-900/10 p-3 text-neutral-400 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 placeholder:text-transparent autofill:pt-6 autofill:pb-2 focus:border-teal-500 focus:pt-6 focus:pb-2 focus:ring-teal-600 disabled:pointer-events-none disabled:opacity-50 sm:p-4 sm:text-sm"
               placeholder={content.phone}
@@ -179,6 +160,7 @@ const netlifyFormName = "contact";
             </label>
           </div>
 
+          <!-- Tes 3 selects HSSelect : inchangés, tu peux garder ton code tel quel -->
           <!-- Company Size Select -->
           <div class="col-span-full min-h-[82px]">
             <label for={companySizeId} class="mb-2 block text-sm font-medium text-gray-200">
@@ -188,7 +170,6 @@ const netlifyFormName = "contact";
               id={companySizeId}
               name="company-size"
               required
-              aria-required="true"
               data-hs-select={JSON.stringify({
                 placeholder: content.companySizeOptions[0],
                 toggleTag:
@@ -228,7 +209,6 @@ const netlifyFormName = "contact";
               id={companyActivityId}
               name="company-activity"
               required
-              aria-required="true"
               aria-describedby={`${companyActivityId}-help`}
               data-hs-select={JSON.stringify({
                 placeholder: content.companyActivityOptions[0],
@@ -269,7 +249,6 @@ const netlifyFormName = "contact";
               id={securityLevelId}
               name="security-level"
               required
-              aria-required="true"
               aria-describedby={`${securityLevelId}-help`}
               data-hs-select={JSON.stringify({
                 placeholder: content.securityLevelOptions[0],
@@ -300,9 +279,7 @@ const netlifyFormName = "contact";
             </select>
           </div>
         </div>
-        <!-- End Grid -->
 
-        <!-- Consent Checkbox -->
         <div class="mt-5 flex items-start">
           <div class="flex h-5 items-center">
             <input
@@ -310,7 +287,6 @@ const netlifyFormName = "contact";
               name="consent"
               type="checkbox"
               required
-              aria-required="true"
               aria-describedby={`${consentId}-label`}
               class="mt-0.5 shrink-0 rounded border-gray-600 bg-neutral-900/10 text-teal-600 checked:border-teal-500 checked:bg-teal-500 focus:ring-teal-500 focus:ring-offset-gray-800"
             />
@@ -321,9 +297,7 @@ const netlifyFormName = "contact";
             </label>
           </div>
         </div>
-        <!-- End Checkbox -->
 
-        <!-- Submit Button -->
         <div class="mt-5">
           <button
             type="submit"
@@ -334,6 +308,5 @@ const netlifyFormName = "contact";
         </div>
       </div>
     </div>
-    <!-- End Card -->
   </div>
 </form>
